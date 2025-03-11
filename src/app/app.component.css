@@ -1,0 +1,121 @@
+/* Global */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  background-color: #f5f7fa;
+  color: #333;
+  scroll-behavior: smooth;
+}
+
+/* Header */
+.header {
+  text-align: left;
+  padding: 20px;
+  background-color: #00509e;
+  color: #fff;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+/* Footer */
+.footer {
+  padding: 1.5rem 4rem;
+  background-color: #003366;
+  color: #fff;
+  margin-top: auto;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 2rem;
+}
+
+.footer-left {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.footer-img {
+  height: 35px;         /* Hauteur fixe */
+  width: auto;          /* Largeur automatique pour garder les proportions */
+  max-width: 200px;     /* Largeur maximale */
+  object-fit: contain;  /* Garde les proportions de l'image */
+  display: block;       /* Change le display */
+  margin-bottom: 0.5rem;
+}
+
+.footer-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.footer-right {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+
+.footer-links a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.3s;
+}
+
+.footer-links a:hover {
+  color: #ffcc00;
+}
+
+.footer-right p,
+.footer-right a {
+  font-size: 0.9rem;
+  color: #ccc;
+  margin: 0;
+}
+
+.separator {
+  color: #ccc;
+  margin: 0 0.5rem;
+}
+
+
+/* Footer */
+.footer {
+  margin-top: auto;
+  background-color: #002f6c;
+  color: white;
+  padding: 2rem;
+  text-align: left;
+  width: 100%;
+}
+
+.footer-img {
+  height: 150px;
+  margin-bottom: 1.5rem;
+  display: flex;
+  justify-content: left;
+}
+
+.footer-links {
+  margin: 1.5rem 0;
+  display: flex;
+  justify-content: left;
+  gap: 2rem;
+}
+
+.footer-links a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  padding: 0.5rem 1rem;
+}
+
+.footer-links a:hover {
+  color: #66b3ff;
+  transform: translateY(-2px);
+}
