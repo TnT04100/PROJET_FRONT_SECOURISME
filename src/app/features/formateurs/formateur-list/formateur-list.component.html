@@ -1,0 +1,57 @@
+<h2> Liste des formateurs </h2>
+
+<button [routerLink]="['/formation/form']">NOUVELLE FORMATION</button>
+<input type="text" [(ngModel)]="search" placeholder="Rechercher un formateur" />
+
+<table>
+  <thead>
+  <tr>
+    <th>Id</th>
+    <th> NID</th>
+    <th>Civilite</th>
+    <th>Nom</th>
+    <th>Prenom</th>
+    <th>Date naissance</th>
+    <th>Ville naissance</th>
+
+
+
+  </tr>
+  </thead>
+  <tbody>
+
+  <tr *ngFor="let formateur of filteredFormateurs">
+    <td>{{ formateur.id }}</td>
+    <td>{{ formateur.NID }}</td>
+    <td>{{ formateur.civilite}}</td>
+    <td>{{ formateur.nom }}</td>
+    <td>{{ formateur.prenom}}</td>
+    <td>{{ formateur.dateNaissance  | date:'dd/MM/yyyy'}}</td>
+    <td>{{ formateur.villeNaissance}}</td>
+
+
+    <td>
+      <button (click)="delete(formateur.id)">Supprimer</button>
+      <button routerLink="/formation/form/{{formateur.id}}">Modifier</button>
+      <button routerLink="/stagiaire/form/{{formateur.id}}">Ajouter un participant</button>
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-left">
+    <img src="https://th.bing.com/th/id/R.2e1eec8cceb7a6abf8865d3e67e5f091?rik=Mr3TpMikRYuQHQ&pid=ImgRaw&r=0" alt="Logo Ministère des Armées" class="footer-img">
+    <div class="footer-links">
+      <a href="#">FAQ</a>
+      <a href="#">Gestion des Cookies</a>
+    </div>
+  </div>
+  <div class="footer-right">
+    <p>Ministère des Armées 2025 - 20XX</p>
+    <span class="separator">|</span>
+    <a href="#">Mentions Légales</a>
+  </div>
+</footer>
