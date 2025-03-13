@@ -6,9 +6,11 @@ import {StagiairesListComponent} from './features/stagiaires/stagiaires-list/sta
 import {FormateurFormComponent} from './features/formateurs/formateur-form/formateur-form.component';
 import {FormateurListComponent} from './features/formateurs/formateur-list/formateur-list.component';
 import {FormationDetailsComponent} from './features/formations/formation-details/formation-details.component';
+import {AccueilComponent} from './features/accueil/accueil.component';
 
 export const routes: Routes = [
 
+  {path: 'accueil', component: AccueilComponent},
   {path: 'formation', component: FormationListComponent},
   {path: 'formation/form', component: FormationFormComponent},
   {path: 'formation/form/:id', component: FormationFormComponent},
