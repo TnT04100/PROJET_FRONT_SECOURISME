@@ -526,7 +526,7 @@ h2 {
 }
 
 .footer-links {
-  margin: 2rem 0; /* Adjusted margin */
+  margin: 1rem 0; /* Adjusted margin */
   display: flex;
   justify-content: left;
   gap: 1rem; /* Adjusted gap */
