@@ -9,17 +9,31 @@ export class FormationService {
   private formations: Formation[] = [
     {
       id: 1,
-      name: 'formation 1',
-      dateDebut: new Date(),
-      dateFin: new Date(),
+      name: 'Formation PSC1 Istres',
+      dateDebut: new Date('2023-01-01'),
+      dateFin: new Date('2023-01-10'),
       diplome: 'PSC1'
     },
     {
       id: 2,
-      name: 'formation 2',
-      dateDebut: new Date(),
-      dateFin: new Date(),
+      name: 'Formation PSC1 Rochefort',
+      dateDebut: new Date('2023-02-01'),
+      dateFin: new Date('2023-02-10'),
       diplome: 'PSC1'
+    },
+    {
+      id: 3,
+      name: 'Formation SC2 ETNC',
+      dateDebut: new Date('2023-03-01'),
+      dateFin: new Date('2023-03-10'),
+      diplome: 'SC2'
+    },
+    {
+      id: 4,
+      name: 'Formation SC2 Paris',
+      dateDebut: new Date('2023-04-01'),
+      dateFin: new Date('2023-04-10'),
+      diplome: 'SC2'
     }
 
   ];

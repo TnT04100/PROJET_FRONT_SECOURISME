@@ -6,4 +6,5 @@ export default interface Formation {
   dateDebut: Date
   dateFin: Date
   diplome: Diplome
+  selected?: boolean;
 }
