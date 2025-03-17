@@ -20,6 +20,8 @@ export class FormationListComponent {
 
   formations: Formation[];
   private _search: string = '';
+  startDate: string = '';
+  endDate: string = '';
 
   constructor(private formationService: FormationService, private router: Router) {
     this.formations = formationService.getAll().map(formation => ({ ...formation, selected: false }));
@@ -34,9 +36,12 @@ export class FormationListComponent {
   }
 
   get filteredFormations(): Formation[] {
-    return this.formations.filter(formation =>
-      formation.name.toLowerCase().includes(this._search.toLowerCase())
-    );
+    return this.formations.filter(formation => {
+      const matchesSearch = formation.name.toLowerCase().includes(this._search.toLowerCase());
+      const matchesStartDate = !this.startDate || new Date(formation.dateDebut) >= new Date(this.startDate);
+      const matchesEndDate = !this.endDate || new Date(formation.dateFin) <= new Date(this.endDate);
+      return matchesSearch && matchesStartDate && matchesEndDate;
+    });
   }
 
   delete(id: number | undefined): void {
