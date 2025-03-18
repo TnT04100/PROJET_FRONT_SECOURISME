@@ -4,7 +4,7 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import { FullCalendarModule } from '@fullcalendar/angular';
-import frLocale from '@fullcalendar/core/locales/fr'; // Importer la langue française
+import frLocale from '@fullcalendar/core/locales/fr';
 
 @Component({
   selector: 'app-accueil',
@@ -15,18 +15,13 @@ import frLocale from '@fullcalendar/core/locales/fr'; // Importer la langue fran
 })
 export class AccueilComponent implements OnInit {
 
-  // Calculer le premier jour du mois suivant
   private getNextMonthDate(): string {
     const today = new Date();
-    // On prend le mois suivant
     today.setMonth(today.getMonth() + 1);
-    // On réinitialise le jour au premier jour du mois suivant
     today.setDate(1);
-    // Retourner la date au format YYYY-MM-DD
     return today.toISOString().split('T')[0];
   }
 
-  // Gestion des événements partagés
   sharedEvents = [
     { title: 'Réunion', start: '2025-03-10' },
     { title: 'Conférence', start: '2025-03-20' },
@@ -34,7 +29,6 @@ export class AccueilComponent implements OnInit {
     { title: 'Formation', start: '2025-04-15' },
   ];
 
-  // Option pour le premier calendrier (mois actuel)
   calendarOptions1: CalendarOptions = {
     plugins: [dayGridPlugin, timeGridPlugin, interactionPlugin],
     initialView: 'dayGridMonth',
@@ -45,11 +39,10 @@ export class AccueilComponent implements OnInit {
     }
   };
 
-  // Option pour le deuxième calendrier (mois suivant)
   calendarOptions2: CalendarOptions = {
     plugins: [dayGridPlugin, timeGridPlugin, interactionPlugin],
     initialView: 'dayGridMonth',
-    initialDate: this.getNextMonthDate(), // Mois suivant
+    initialDate: this.getNextMonthDate(),
     locale: frLocale,
     events: this.sharedEvents,
     eventClick: (info) => {
@@ -60,13 +53,15 @@ export class AccueilComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    // Après le chargement du composant, on met à jour la date du mois suivant pour le deuxième calendrier
     this.updateSecondCalendar();
   }
 
   private updateSecondCalendar(): void {
-    // Recalculer la date du mois suivant et mettre à jour l'option pour le calendrier 2
     this.calendarOptions2.initialDate = this.getNextMonthDate();
   }
 
+  synchronizeCalendars(): void {
+    this.updateSecondCalendar();
+    // Additional synchronization logic can be added here if needed
+  }
 }
