@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 
 import {Civilite} from '../models/civilite.type';
 import Stagiaire from '../models/stagiaires.interface';
+import Formation from '../../formations/formation-list/models/formation.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -67,7 +68,7 @@ export class StagiairesService {
       return;
     }
     if (stagiaire.id) {
-      const index = this.stagiaire.findIndex(stagiaire => stagiaire.id === stagiaire.id);
+      const index = this.stagiaire.findIndex(s => s.id === stagiaire.id);
       if (index !== -1) {
         this.stagiaire[index] = {...stagiaire};
       }
@@ -76,6 +77,7 @@ export class StagiairesService {
       this.stagiaire.push({...stagiaire});
     }
   }
+
 
 
   delete(id: number): void {
