@@ -60,6 +60,10 @@ export class FormationFormComponent {
 
     };
   }
+
+  annuler() {
+    this.router.navigate(['/formation'])
+  }
 }
 
 

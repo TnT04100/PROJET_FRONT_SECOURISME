@@ -2,13 +2,14 @@ import {Injectable} from '@angular/core';
 
 import {Civilite} from '../models/civilite.type';
 import Stagiaire from '../models/formateurs.interface';
+import Formateurs from '../models/formateurs.interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FormateursService {
 
-  private stagiaire: Stagiaire[] = [
+  private formateurs: Formateurs[] = [
     {
       id: 1,
       NID: '1234',
@@ -54,37 +55,37 @@ export class FormateursService {
 
   }
 
-  getAll(): Stagiaire[] {
-    return this.stagiaire;
+  getAll(): Formateurs[] {
+    return this.formateurs;
   }
 
-  getById(id: number): Stagiaire | undefined {
-    return this.stagiaire.find(stagiaire => stagiaire.id === id);
+  getById(id: number): Formateurs | undefined {
+    return this.formateurs.find(f => f.id === id);
   }
 
-  save(stagiaire: Stagiaire): void {
-    if (!stagiaire) {
+  save(formateur: Formateurs): void {
+    if (!formateur) {
       return;
     }
-    if (stagiaire.id) {
-      const index = this.stagiaire.findIndex(stagiaire => stagiaire.id === stagiaire.id);
+    if (formateur.id) {
+      const index = this.formateurs.findIndex(f => f.id === formateur.id);
       if (index !== -1) {
-        this.stagiaire[index] = {...stagiaire};
+        this.formateurs[index] = {...formateur};
       }
     } else {
-      stagiaire.id = this.getLastId() + 1;
-      this.stagiaire.push({...stagiaire});
+      formateur.id = this.getLastId() + 1;
+      this.formateurs.push({...formateur});
     }
   }
 
 
   delete(id: number): void {
-    this.stagiaire = this.stagiaire.filter(stagiaire => stagiaire.id !== id);
+    this.formateurs = this.formateurs.filter(formateurs => formateurs.id !== id);
   }
 
 
   private getLastId() {
     //2eme facon de coder cette methode
-    return this.stagiaire.length > 0 ? Math.max(...this.stagiaire.map(stagiaire => stagiaire.id ?? 0)) : 0;
+    return this.formateurs.length > 0 ? Math.max(...this.formateurs.map(formateurs => formateurs.id ?? 0)) : 0;
   }
 }

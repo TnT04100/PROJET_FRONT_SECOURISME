@@ -1,28 +1,33 @@
 <h2>Liste des formations</h2>
 
 <button [routerLink]="['/formation/form']">NOUVELLE FORMATION</button>
-
-
 <button (click)="showSelectedDetails()">Afficher les détails</button>
 
 <table>
   <thead>
   <tr>
     <th>Selectionner</th>
-    <th>Type de diplome</th>
+    <th>Type de diplome <br>
+      <select [(ngModel)]="diplomeFilter" (ngModelChange)="updateDisplayedCount()">
+        <option value="">Toutes les diplomes</option>
+        <option value="PSC1">PSC1</option>
+        <option value="SC1">SC1</option>
+        <option value="SC2">SC2</option>
+      </select>
+    </th>
     <th>
       Nom <br>
-      <input type="text" [(ngModel)]="search" placeholder="Rechercher une formation" />
+      <input type="text" [(ngModel)]="search" (ngModelChange)="updateDisplayedCount()" placeholder="Rechercher une formation" />
     </th>
     <th>
       Date debut <br>
-      <input type="date" [(ngModel)]="startDate" placeholder="Date de début" />
+      <input type="date" [(ngModel)]="startDate" (ngModelChange)="updateDisplayedCount()" placeholder="Date de début" />
     </th>
     <th>
       Date fin <br>
-      <input type="date" [(ngModel)]="endDate" placeholder="Date de fin" />
+      <input type="date" [(ngModel)]="endDate" (ngModelChange)="updateDisplayedCount()" placeholder="Date de fin" />
     </th>
-    <th>Actions</th>
+    <th>Nombre de formations affichées: {{ displayedCount }}</th>
   </tr>
   </thead>
   <tbody>
@@ -42,7 +47,6 @@
   </tbody>
 </table>
 
-<button (click)="showSelectedDetails()">Afficher les détails</button>
 
 <!-- Footer -->
 <footer class="footer">

@@ -36,20 +36,20 @@ export class FormateurFormComponent {
   ) {
     this.route.paramMap.subscribe(params => {
       const id = params.get('id')
-      if(id){
-        this.formateursForm = this.formateursService.getById(parseInt(id)) ?? this.getBlankDino()
-      }else{
-        this.formateursForm = this.getBlankDino()
+      if (id) {
+        this.formateursForm = this.formateursService.getById(parseInt(id)) ?? this.getBlankFormateur()
+      } else {
+        this.formateursForm = this.getBlankFormateur()
       }
     })
   }
 
   valider(): void{
     this.formateursService.save(this.formateursForm)
-    this.router.navigate(['/dino/list'])
+    this.router.navigate(['/formateur'])
   }
 
-  private getBlankDino(): Stagiaire {
+  private getBlankFormateur(): Stagiaire {
     return {
       NID: '',
       nom: '',
@@ -60,5 +60,9 @@ export class FormateurFormComponent {
 
 
     };
+  }
+
+  annuler() {
+    this.router.navigate(['/formateur'])
   }
 }
