@@ -10,7 +10,7 @@ import {AccueilComponent} from './features/accueil/accueil.component';
 
 export const routes: Routes = [
 
-  {path: 'accueil', component: AccueilComponent},
+  {path: '', component: AccueilComponent},
   {path: 'formation', component: FormationListComponent},
   {path: 'formation/form', component: FormationFormComponent},
   {path: 'formation/form/:id', component: FormationFormComponent},
