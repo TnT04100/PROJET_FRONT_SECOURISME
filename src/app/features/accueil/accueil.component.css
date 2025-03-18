@@ -1,0 +1,25 @@
+.fc-day-today {
+  background-color: #838383 !important; /*couleur du jour actuel */
+  color: #000000 !important; /* couleur nombre du jour actue l*/
+}
+
+.full-calendar {
+  width: 45% !important; /* Chaque calendrier prend 45% de l’espace */
+  min-width: 300px !important; /* Empêche qu’ils deviennent trop petits */
+}
+
+.calendar-container {
+  display: flex;
+  justify-content: space-around; /* Espacement égal */
+  gap: 20px; /* Espace entre les calendriers */
+  flex-wrap: wrap; /* Passer en colonne sur mobile */
+}
+
+.fc-daygrid-day {
+  background-color: #b5c6ed; /* Light grey background for weekends */
+}
+
+/* Change the background color of weekends */
+.fc-day-sat, .fc-day-sun {
+  background-color: #cdc9c9; /* Light grey background for weekends */
+}
