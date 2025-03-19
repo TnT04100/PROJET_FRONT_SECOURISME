@@ -28,7 +28,7 @@ body {
   align-items: center;
   justify-content: space-between;
   padding: 15px 30px;
-  background: #00509e;
+  background: darkblue;
   border-bottom: 2px solid #000000;
   box-shadow: 0 4px 6px rgb(0, 64, 227);
 }
@@ -139,7 +139,7 @@ body {
 /* Menu latéral */
 .sidebar {
   width: 100%;
-  background: #00509e;
+  background: darkblue;
   padding: 20px;
   display: flex;
   flex-direction: row;
@@ -153,7 +153,7 @@ body {
   align-items: center; /* Aligne verticalement */
   gap: 20px; /* Espacement entre chaque bouton */
   padding: 15px 20px; /* Ajuste l'espace intérieur */
-  background: #00509e; /* Garde la couleur de fond */
+  background: darkblue; /* Garde la couleur de fond */
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
   width: 100%; /* Prend toute la largeur */
 }
@@ -182,18 +182,10 @@ body {
 }
 
 
-/* Contenu */
-.content {
-  flex-grow: 1;
-  padding: 40px;
-  overflow-y: auto;
-}
-
-
 
 h2 {
   text-align: center;
-  margin-bottom: 20px;
+  margin-top: 15px;
   font-size: 28px;
 }
 
@@ -202,36 +194,73 @@ table {
   width: 100%;
   border-collapse: collapse;
   background: rgba(0, 0, 0, 0.2);
-  border-radius: 5px;
+  border-radius: 1px;
   overflow: hidden;
   box-shadow: 0 5px 15px rgba(218, 218, 218, 0.2);
+  table-layout: fixed;
 }
 
-th, td {
-  padding: 15px;
-  text-align: left;
-}
-
-th {
-  background: linear-gradient(45deg, #00509e, #00509e);
+.btn-delete {
+  background: #6e6b6b;
   color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  display: flex;
 }
 
-td {
-  border-bottom: 1px solid #202020;
+
+.btn-delete:hover {
+  background: #0000ff;
+  transform: scale(1.1);
 }
 
-tr:hover {
-  background: #676767;
-  transition: all 0.3s ease-in-out;
+/* Assurer que l'en-tête du tableau reste bien en bleu */
+th {
+  background-color: #00509e !important; /* Bleu foncé */
+  color: white; /* Texte en blanc */
+  text-align: center; /* Centre le texte */
+  vertical-align: middle;
+  padding: 12px;
+  font-weight: bold;
+  border: 1px solid #000; /* Optionnel : Ajoute une séparation claire */
 }
+
+/* Alignement du texte pour chaque colonne */
+th, td {
+  text-align: center; /* Centre tout le texte dans le tableau */
+  padding: 12px; /* Ajoute de l'espace autour du texte */
+  width: auto;
+}
+
+/* Alignement spécifique pour la colonne "Nom" (gauche pour lisibilité) */
+th:nth-child(1), td:nth-child(1) {
+  text-align: left; /* Garde le nom aligné à gauche */
+  padding-left: 15px; /* Ajoute une marge à gauche */
+}
+
+/* Alignement spécifique pour la colonne "Taille" (droite pour les valeurs) */
+th:nth-child(4), td:nth-child(4) {
+  text-align: right; /* Aligne les tailles à droite */
+  padding-right: 15px; /* Ajoute une marge à droite */
+}
+
+/* Correction de la disposition des boutons de suppression */
+td:last-child {
+  display: flex;
+  justify-content: center; /* Centre les boutons de suppression */
+  align-items: center;
+}
+
+
 /* Footer */
 .footer {
   position: absolute;
   bottom: 0;
   left: 0;
   width: 100%; /* Assure que le footer prend toute la largeur */
-  background-color: #002f6c;
+  background-color: darkblue;
   color: white;
   padding: 1rem 2rem; /* Ajoute un peu d'espace pour l'aération */
   display: flex;

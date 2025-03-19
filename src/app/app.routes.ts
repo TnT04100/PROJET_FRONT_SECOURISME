@@ -8,6 +8,7 @@ import {FormateurListComponent} from './features/formateurs/formateur-list/forma
 import {FormationDetailsComponent} from './features/formations/formation-details/formation-details.component';
 import {AccueilComponent} from './features/accueil/accueil.component';
 import {AuthentComponent} from './features/authent/authent.component';
+import {CoffreFortComponent} from './features/gestion-documents/coffre-fort/coffre-fort.component';
 
 export const routes: Routes = [
 
@@ -24,6 +25,7 @@ export const routes: Routes = [
   {path: 'formateur/form/:id', component: FormateurFormComponent},
   { path: 'formation', component: FormationListComponent },
   { path: 'formation/details/:id', component: FormationDetailsComponent },
+  {path: 'coffre-fort', component: CoffreFortComponent},
 
 
 ];
