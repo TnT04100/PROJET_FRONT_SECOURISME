@@ -4,15 +4,17 @@ import { RouterLink } from '@angular/router';
 import Stagiaire from '../models/stagiaires.interface';
 import { StagiairesService } from '../services/stagiaires.service';
 import { FormsModule } from "@angular/forms";
+import {MenuComponent} from "../../../shared/menu/menu.component";
 
 @Component({
   selector: 'app-stagiaires-list',
-  imports: [
-    DatePipe,
-    RouterLink,
-    NgForOf,
-    FormsModule
-  ],
+    imports: [
+        DatePipe,
+        RouterLink,
+        NgForOf,
+        FormsModule,
+        MenuComponent
+    ],
   templateUrl: './stagiaires-list.component.html',
   styleUrl: './stagiaires-list.component.css'
 })

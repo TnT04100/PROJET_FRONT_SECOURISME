@@ -4,14 +4,16 @@ import {DatePipe, NgForOf} from "@angular/common";
 import Stagiaire from '../models/stagiaires.interface';
 import {ActivatedRoute, Router} from '@angular/router';
 import {StagiairesService} from '../services/stagiaires.service';
+import {MenuComponent} from "../../../shared/menu/menu.component";
 
 @Component({
   selector: 'app-stagiaires-form',
-  imports: [
-    FormsModule,
-    ReactiveFormsModule,
-    NgForOf
-  ],
+    imports: [
+        FormsModule,
+        ReactiveFormsModule,
+        NgForOf,
+        MenuComponent
+    ],
   templateUrl: './stagiaires-form.component.html',
   styleUrl: './stagiaires-form.component.css'
 })

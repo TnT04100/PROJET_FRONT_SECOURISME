@@ -6,15 +6,17 @@ import {StagiairesService} from '../../stagiaires/services/stagiaires.service';
 import Formateurs from '../models/formateurs.interface';
 import {FormsModule} from '@angular/forms';
 import {FormateursService} from '../services/formateurs.service';
+import {MenuComponent} from "../../../shared/menu/menu.component";
 
 @Component({
   selector: 'app-formateur-list',
-  imports: [
-    DatePipe,
-    RouterLink,
-    NgForOf,
-    FormsModule
-  ],
+    imports: [
+        DatePipe,
+        RouterLink,
+        NgForOf,
+        FormsModule,
+        MenuComponent
+    ],
   templateUrl: './formateur-list.component.html',
   styleUrl: './formateur-list.component.css'
 })
