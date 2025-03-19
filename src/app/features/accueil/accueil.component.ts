@@ -5,11 +5,12 @@ import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import frLocale from '@fullcalendar/core/locales/fr';
+import {MenuComponent} from '../../shared/menu/menu.component';
 
 @Component({
   selector: 'app-accueil',
   templateUrl: './accueil.component.html',
-  imports: [FullCalendarModule],
+  imports: [FullCalendarModule, MenuComponent],
   styleUrls: ['./accueil.component.css'],
   encapsulation: ViewEncapsulation.None
 })

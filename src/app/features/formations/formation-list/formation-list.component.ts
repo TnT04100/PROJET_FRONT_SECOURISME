@@ -4,6 +4,7 @@ import Formation from './models/formation.interface';
 import { FormationService } from './services/formation.service';
 import { DatePipe, NgForOf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import {MenuComponent} from '../../../shared/menu/menu.component';
 
 @Component({
   selector: 'app-formation-list',
@@ -11,7 +12,8 @@ import { FormsModule } from '@angular/forms';
     DatePipe,
     NgForOf,
     FormsModule,
-    RouterLink
+    RouterLink,
+    MenuComponent
   ],
   templateUrl: './formation-list.component.html',
   styleUrl: './formation-list.component.css'
