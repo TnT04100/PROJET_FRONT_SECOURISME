@@ -82,7 +82,7 @@ export class FormationListComponent {
 
   showDeleteConfirmation(formation: Formation) {
     this.formationToDelete = formation;
-    this.popUpContent = `Voulez-vous supprimer la ${formation.name}  ?`;
+    this.popUpContent = `Voulez-vous supprimer " ${formation.name} " ?`;
     this.isPopUpVisible = true;
   }
 

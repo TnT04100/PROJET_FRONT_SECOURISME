@@ -1,19 +1,22 @@
 import { Component } from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {DatePipe, NgForOf} from "@angular/common";
+import {DatePipe, NgForOf, NgIf} from "@angular/common";
 import Stagiaire from '../models/stagiaires.interface';
 import {ActivatedRoute, Router} from '@angular/router';
 import {StagiairesService} from '../services/stagiaires.service';
 import {MenuComponent} from "../../../shared/menu/menu.component";
+import {PopUpComponent} from '../../pop-up/pop-up.component';
 
 @Component({
   selector: 'app-stagiaires-form',
-    imports: [
-        FormsModule,
-        ReactiveFormsModule,
-        NgForOf,
-        MenuComponent
-    ],
+  imports: [
+    FormsModule,
+    ReactiveFormsModule,
+    NgForOf,
+    MenuComponent,
+    PopUpComponent,
+    NgIf
+  ],
   templateUrl: './stagiaires-form.component.html',
   styleUrl: './stagiaires-form.component.css'
 })
@@ -64,5 +67,23 @@ export class StagiairesFormComponent {
 
   annuler() {
     this.router.navigate(['/stagiaire'])
+  }
+
+  // gestion Pop-up
+  isValidationPopUpVisible = false;
+  popUpContent = 'Voulez vous valider cette formation ?';
+
+  showValidationPopUp() {
+    this.isValidationPopUpVisible = true;
+    this.popUpContent = `Voulez-vous valider la création de
+                        ${this.stagiaireForm.nom}"
+                        ${this.stagiaireForm.prenom}
+                        ayant le NID :
+                        ${this.stagiaireForm.NID} " ?`;
+  }
+
+  confirmValidation() {
+    this.valider(); // Sauvegarde la formation
+    this.isValidationPopUpVisible = false;
   }
 }

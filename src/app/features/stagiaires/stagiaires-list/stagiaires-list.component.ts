@@ -5,16 +5,19 @@ import Stagiaire from '../models/stagiaires.interface';
 import { StagiairesService } from '../services/stagiaires.service';
 import { FormsModule } from "@angular/forms";
 import {MenuComponent} from "../../../shared/menu/menu.component";
+import {PopUpComponent} from '../../pop-up/pop-up.component';
+import Formateurs from '../../formateurs/models/formateurs.interface';
 
 @Component({
   selector: 'app-stagiaires-list',
-    imports: [
-        DatePipe,
-        RouterLink,
-        NgForOf,
-        FormsModule,
-        MenuComponent
-    ],
+  imports: [
+    DatePipe,
+    RouterLink,
+    NgForOf,
+    FormsModule,
+    MenuComponent,
+    PopUpComponent
+  ],
   templateUrl: './stagiaires-list.component.html',
   styleUrl: './stagiaires-list.component.css'
 })
@@ -57,5 +60,29 @@ export class StagiairesListComponent {
       const matchesVilleNaissance = stagiaires.villeNaissance.toLowerCase().includes(this.villeNaissanceFilter.toLowerCase());
       return matchesNID && matchesCivilite && matchesNom && matchesPrenom && matchesDateNaissance && matchesVilleNaissance;
     });
+  }
+
+
+// gestion Pop-up
+  isPopUpVisible = false;
+  popUpTitle = 'Supression du Stagiaire';
+  popUpContent = 'Voulez-vous supprimer ce stagiaire ?';
+  formationToDelete: any;
+
+  showDeleteConfirmation(stagiaire: Stagiaire) {
+    this.formationToDelete = stagiaire;
+    this.popUpContent = `Voulez-vous supprimer le stagiaire ${stagiaire.nom} ${stagiaire.prenom} ?`;
+    this.isPopUpVisible = true;
+  }
+
+  hidePopUp() {
+    this.isPopUpVisible = false;
+  }
+
+  confirmDeletion() {
+    if (this.formationToDelete && this.formationToDelete.id) {
+      this.delete(this.formationToDelete.id);
+      this.isPopUpVisible = false;
+    }
   }
 }

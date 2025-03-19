@@ -47,13 +47,22 @@
     <td>{{ stagiaire.dateNaissance | date:'dd/MM/yyyy' }}</td>
     <td>{{ stagiaire.villeNaissance }}</td>
     <td>
-      <button (click)="delete(stagiaire.id)">Supprimer</button>
+      <button (click)="showDeleteConfirmation(stagiaire)">Supprimer</button>
       <button routerLink="/stagiaire/form/{{ stagiaire.id }}">Modifier</button>
       <button routerLink="/stagiaire/form/{{ stagiaire.id }}">Ajouter un participant</button>
     </td>
   </tr>
   </tbody>
 </table>
+
+<app-pop-up
+  [isVisible]="isPopUpVisible"
+  [title]="popUpTitle"
+  [content]="popUpContent"
+  [type]="'confirmation'"
+  (close)="hidePopUp()"
+  (confirm)="confirmDeletion()">
+</app-pop-up>
 
 <!-- Footer -->
 <footer class="footer">

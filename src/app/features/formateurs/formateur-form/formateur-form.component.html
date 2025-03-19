@@ -23,12 +23,20 @@
   <input [(ngModel)]="formateursForm.villeNaissance" id="villeNaissance" name="villeNaissance" type="text">
 
   <div class="button-group">
-    <button (click)="valider()">Valider</button>
+    <button (click)="showValidationPopUp()">Valider</button>
     <button (click)="annuler()">Annuler</button>
   </div>
-
-
 </form>
+
+<app-pop-up
+  *ngIf="isValidationPopUpVisible"
+  [isVisible]="isValidationPopUpVisible"
+  [title]="'Validation de Formateurs'"
+  [content]=popUpContent
+  [type]="'confirmation'"
+  (confirm)="confirmValidation()"
+  (close)="isValidationPopUpVisible = false">
+</app-pop-up>
 
 
 <!-- Footer -->
