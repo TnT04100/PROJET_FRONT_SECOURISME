@@ -1,0 +1,309 @@
+/* Global */
+* {
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background-color: #121212;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* Conteneur principal */
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+
+/* En-tête */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 30px;
+  background: #00509e;
+  border-bottom: 2px solid #000000;
+  box-shadow: 0 4px 6px rgb(0, 64, 227);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Centre l'image horizontalement */
+  width: 150px; /* Définit une largeur fixe */
+  height: 100px; /* Hauteur fixe pour garder l’espace */
+  overflow: hidden; /* Cache tout ce qui dépasse */
+}
+
+.logo img {
+  width: 200px; /* Taille de l’image réduite */
+  height: auto; /* Garde le ratio d’origine */
+  object-fit: contain; /* Ajuste l’image dans l’espace sans la déformer */
+}
+
+
+.info {
+  font-size: 14px;
+  color: #b0b0b0;
+}
+
+.search-bar {
+  display: flex;
+  gap: 10px;
+  transform: translateX(-20px); /* Déplace légèrement vers la gauche */
+}
+
+.search-bar input {
+  padding: 14px; /* Augmente la hauteur */
+  width: 250px; /* Augmente la largeur */
+  font-size: 16px; /* Texte plus grand */
+  border-radius: 8px; /* Bords plus arrondis */
+  border: none;
+  background: #2a2a2a;
+  color: white;
+  outline: none;
+  transition: all 0.3s ease-in-out;
+}
+
+.search-bar input:focus {
+  background: #3a3a3a; /* Change légèrement la couleur au focus */
+}
+
+
+.btn-cr {
+  background: linear-gradient(45deg, #6e6b6b, #636363);
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: all 0.3s ease-in-out;
+}
+
+.btn-cr:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 10px rgba(6, 73, 198, 0.6);
+}
+
+.btn-return {
+  background: transparent;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 50px; /* Garde l'effet arrondi */
+  padding: 8px 15px; /* Ajuste le padding pour réduire la largeur */
+  font-size: 14px; /* Augmente légèrement le texte pour plus de visibilité */
+
+  display: flex; /* Utilise `flex` pour un bon alignement */
+  align-items: center; /* Centre le contenu verticalement */
+  justify-content: center; /* Centre le texte */
+
+  width: auto; /* ✅ Ajuste automatiquement la largeur au contenu */
+  max-width: 150px; /* ✅ Empêche le bouton de devenir trop large */
+
+  position: relative; /* ✅ Positionne à gauche */
+  top: 15px; /* ✅ Ajuste la distance du haut */
+  left: -35px; /* ✅ Ajuste la distance depuis le bord gauche */
+
+  transition: all 0.3s ease-in-out;
+  outline: none;
+  box-shadow: none;
+}
+
+.btn-return:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 8px rgba(199, 199, 199, 0.6);
+}
+
+
+.btn-return:focus {
+  outline: none; /* Supprime le carré blanc quand on clique */
+}
+
+
+
+/* Contenu principal */
+.main {
+  display: flex;
+  flex-grow: 1;
+  height: calc(100vh - 70px);
+}
+
+/* Menu latéral */
+.sidebar {
+  width: 100%;
+  background: #00509e;
+  padding: 20px;
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+  box-shadow: 2px 0 10px rgb(253, 253, 253);
+}
+
+.navbar {
+  display: flex; /* Place les boutons en ligne */
+  justify-content: center; /* Centre les boutons horizontalement */
+  align-items: center; /* Aligne verticalement */
+  gap: 20px; /* Espacement entre chaque bouton */
+  padding: 15px 20px; /* Ajuste l'espace intérieur */
+  background: #00509e; /* Garde la couleur de fond */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  width: 100%; /* Prend toute la largeur */
+}
+
+.navbar button {
+  background: #5e5e5e;
+  color: white;
+  border: none;
+  padding: 12px 20px; /* Augmente légèrement le padding horizontal */
+  text-align: center; /* Centre le texte */
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  min-width: 120px; /* Assure que tous les boutons ont une taille minimum */
+}
+
+.navbar button:hover {
+  background: #00509e;
+  transform: scale(1.05); /* Légère mise en avant au survol */
+  box-shadow: 0 0 10px rgba(51, 51, 51, 0.5);
+}
+
+/* Assure un espace constant entre chaque bouton */
+.navbar button:not(:last-child) {
+  margin-right: 15px;
+}
+
+
+/* Contenu */
+.content {
+  flex-grow: 1;
+  padding: 40px;
+  overflow-y: auto;
+}
+
+
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 28px;
+}
+
+/* Tableau */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(218, 218, 218, 0.2);
+}
+
+th, td {
+  padding: 15px;
+  text-align: left;
+}
+
+th {
+  background: linear-gradient(45deg, #00509e, #00509e);
+  color: white;
+}
+
+td {
+  border-bottom: 1px solid #202020;
+}
+
+tr:hover {
+  background: #676767;
+  transition: all 0.3s ease-in-out;
+}
+/* Footer */
+.footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%; /* Assure que le footer prend toute la largeur */
+  background-color: #002f6c;
+  color: white;
+  padding: 1rem 2rem; /* Ajoute un peu d'espace pour l'aération */
+  display: flex;
+  justify-content: space-between; /* Sépare les éléments à gauche et à droite */
+  align-items: center; /* Aligne les éléments verticalement */
+}
+
+/* Bloc gauche (Image + liens) */
+.footer-left {
+  display: flex;
+  align-items: center;
+  gap: 20px; /* Espace entre l'image et les liens */
+}
+
+/* Image du footer */
+.footer-img {
+  height: 100px; /* Ajuste la taille de l'image */
+  display: flex;
+  align-items: center;
+  justify-content: left;
+}
+
+/* Liens du footer */
+.footer-links {
+  display: flex;
+  flex-direction: row; /* Met les liens sur une ligne */
+  gap: 15px; /* Espace entre chaque lien */
+}
+
+/* Espacement du séparateur `|` */
+.separator {
+  margin: 0 10px;
+  font-weight: bold;
+}
+
+/* Alignement des liens (FAQ, Cookies) */
+.footer-links a {
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: #66b3ff;
+  transform: translateY(-2px);
+}
+
+
+.footer-right {
+  display: flex;
+  justify-content: flex-end;
+
+}
+
+.separator {
+  margin: 0 10px;
+}
+
+.link-mention {
+  color: white;
+  transform: translateY(1px);
+  text-decoration: none;
+}
+
+.chemin-actuel {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  padding: 10px;
+  background: #f8f9fa;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
