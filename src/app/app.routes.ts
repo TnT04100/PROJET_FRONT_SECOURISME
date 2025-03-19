@@ -7,10 +7,12 @@ import {FormateurFormComponent} from './features/formateurs/formateur-form/forma
 import {FormateurListComponent} from './features/formateurs/formateur-list/formateur-list.component';
 import {FormationDetailsComponent} from './features/formations/formation-details/formation-details.component';
 import {AccueilComponent} from './features/accueil/accueil.component';
+import {AuthentComponent} from './features/authent/authent.component';
 
 export const routes: Routes = [
 
-  {path: '', component: AccueilComponent},
+  {path:'', component: AuthentComponent},
+  {path: 'accueil', component: AccueilComponent},
   {path: 'formation', component: FormationListComponent},
   {path: 'formation/form', component: FormationFormComponent},
   {path: 'formation/form/:id', component: FormationFormComponent},
