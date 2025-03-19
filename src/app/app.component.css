@@ -6,6 +6,7 @@ header{
 
 .fr-logo{
   --text-spacing: 0;
+  font-family: Marianne, sans-serif;
   --underline-img: none;
   color: white;
   display: inline-block;
