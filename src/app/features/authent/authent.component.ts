@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormsModule} from '@angular/forms';
-import {AuthentService} from './authent.service';
+import {AuthentService} from './services/authent.service';
 import {Router} from '@angular/router';
 
 

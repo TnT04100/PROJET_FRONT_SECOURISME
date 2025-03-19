@@ -28,6 +28,12 @@
       <input type="text" [(ngModel)]="prenomFilter" (ngModelChange)="updateDisplayedCount()" placeholder="Rechercher par prénom" />
     </th>
     <th>
+      Grade
+    </th>
+    <th>
+      ID de l'Unité
+    </th>
+    <th>
       Date naissance <br>
       <input type="date" [(ngModel)]="dateNaissanceFilter" (ngModelChange)="updateDisplayedCount()" placeholder="Rechercher par date de naissance" />
     </th>
@@ -40,12 +46,14 @@
   </thead>
   <tbody>
   <tr *ngFor="let formateur of filteredFormateurs">
-    <td>{{ formateur.NID }}</td>
+    <td>{{ formateur.numeroIdentifiantDefense }}</td>
     <td>{{ formateur.civilite }}</td>
     <td>{{ formateur.nom }}</td>
     <td>{{ formateur.prenom }}</td>
-    <td>{{ formateur.dateNaissance | date:'dd/MM/yyyy' }}</td>
-    <td>{{ formateur.villeNaissance }}</td>
+    <td>{{ formateur.grade }}</td>
+    <td>{{formateur.uniteId}}</td>
+    <td>{{ formateur.dateDeNaissance | date:'dd/MM/yyyy' }}</td>
+    <td>{{ formateur.villeDeNaissance }}</td>
     <td>
       <button (click)="delete(formateur.id)">Supprimer</button>
       <button routerLink="/formateur/form/{{formateur.id}}">Modifier</button>
