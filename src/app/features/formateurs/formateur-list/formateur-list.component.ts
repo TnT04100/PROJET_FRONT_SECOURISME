@@ -7,16 +7,18 @@ import Formateurs from '../models/formateurs.interface';
 import {FormsModule} from '@angular/forms';
 import {FormateursService} from '../services/formateurs.service';
 import {MenuComponent} from "../../../shared/menu/menu.component";
+import {PopUpComponent} from '../../pop-up/pop-up.component';
 
 @Component({
   selector: 'app-formateur-list',
-    imports: [
-        DatePipe,
-        RouterLink,
-        NgForOf,
-        FormsModule,
-        MenuComponent
-    ],
+  imports: [
+    DatePipe,
+    RouterLink,
+    NgForOf,
+    FormsModule,
+    MenuComponent,
+    PopUpComponent
+  ],
   templateUrl: './formateur-list.component.html',
   styleUrl: './formateur-list.component.css'
 })
@@ -67,5 +69,29 @@ export class FormateurListComponent {
       const matchesVilleNaissance = formateur.villeNaissance.toLowerCase().includes(this.villeNaissanceFilter.toLowerCase());
       return matchesNID && matchesCivilite && matchesNom && matchesPrenom && matchesDateNaissance && matchesVilleNaissance;
     });
+  }
+
+
+// gestion Pop-up
+  isPopUpVisible = false;
+  popUpTitle = 'Supression du Formateur';
+  popUpContent = 'Voulez-vous supprimer ce formateur ?';
+  formationToDelete: any;
+
+  showDeleteConfirmation(formateur: Formateurs) {
+    this.formationToDelete = formateur;
+    this.popUpContent = `Voulez-vous supprimer le formateur ${formateur.nom} ${formateur.prenom} ?`;
+    this.isPopUpVisible = true;
+  }
+
+  hidePopUp() {
+    this.isPopUpVisible = false;
+  }
+
+  confirmDeletion() {
+    if (this.formationToDelete && this.formationToDelete.id) {
+      this.delete(this.formationToDelete.id);
+      this.isPopUpVisible = false;
+    }
   }
 }

@@ -47,13 +47,22 @@
     <td>{{ formateur.dateNaissance | date:'dd/MM/yyyy' }}</td>
     <td>{{ formateur.villeNaissance }}</td>
     <td>
-      <button (click)="delete(formateur.id)">Supprimer</button>
+      <button (click)="showDeleteConfirmation(formateur)">Supprimer</button>
       <button routerLink="/formateur/form/{{formateur.id}}">Modifier</button>
       <button routerLink="/stagiaire/form/{{formateur.id}}">Ajouter un participant</button>
     </td>
   </tr>
   </tbody>
 </table>
+
+<app-pop-up
+  [isVisible]="isPopUpVisible"
+  [title]="popUpTitle"
+  [content]="popUpContent"
+  [type]="'confirmation'"
+  (close)="hidePopUp()"
+  (confirm)="confirmDeletion()">
+</app-pop-up>
 
 <!-- Footer -->
 <footer class="footer">
@@ -70,3 +79,4 @@
     <a href="#">Mentions Légales</a>
   </div>
 </footer>
+
