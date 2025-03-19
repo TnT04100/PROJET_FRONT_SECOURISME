@@ -1,6 +1,9 @@
 import {Component, NgModule} from '@angular/core';
-import {RouterLink, RouterOutlet} from '@angular/router';
-import { FullCalendarModule } from '@fullcalendar/angular'; // Import FullCalendar
+import {RouterLink, RouterModule, RouterOutlet} from '@angular/router';
+import { FullCalendarModule } from '@fullcalendar/angular';
+import {AuthentComponent} from './features/authent/authent.component';
+import {BrowserModule} from '@angular/platform-browser';
+import {routes} from './app.routes'; // Import FullCalendar
 
 @Component({
   selector: 'app-root',
@@ -13,9 +16,9 @@ export class AppComponent {
 }
 
 @NgModule({
-  imports: [
-    // ...
-    FullCalendarModule, // Add FullCalendarModule to your imports
-  ],
+
+  declarations: [],
+  imports: [FullCalendarModule, BrowserModule, RouterModule.forRoot(routes), AppComponent, AuthentComponent],
+  providers: []
 })
 export class AppModule {}

@@ -10,12 +10,12 @@
           <img class= "img-brevet"src="assets/images/brevet_secourisme.png" alt="brevet secourisme">
 
           <div class="input-box">
-            <input [(ngModel)]="identifiant" name="identifiant" id="nid" type="text" required>
+            <input name="identifiant" id="nid" type="text" required>
             <label>NID</label>
             <img src="assets/images/user-3-fill.svg">
           </div>
             <div class="input-box">
-            <input [(ngModel)]="motDePasse" name="motDePasse" id="password" type="password" required>
+            <input name="motDePasse" id="password" type="password" required>
             <label>Mot de passe</label>
             <img src="assets/images/bxs-lock.svg">
           </div>
@@ -27,7 +27,7 @@
             </p>
             <a href="#">Mot de passe oublié?</a>
           </div>
-          <button (click)="connexion()" id="buttonConnexion" class="btn">Connexion</button>
+          <button  id="buttonConnexion" class="btn">Connexion</button>
           <button  id="buttonPlanning" class="btn">Accès planning</button>
           </div>
         </div>

@@ -12,6 +12,7 @@ import {AuthentComponent} from './features/authent/authent.component';
 
 export const routes: Routes = [
 
+  {path: '', component: AuthentComponent},
   {path: 'accueil', component: AccueilComponent},
   {path: 'formation', component: FormationListComponent},
   {path: 'formation/form', component: FormationFormComponent},
@@ -23,7 +24,7 @@ export const routes: Routes = [
   {path: 'formateur/form', component: FormateurFormComponent},
   {path: 'formateur/form/:id', component: FormateurFormComponent},
   {path: 'formation', component: FormationListComponent },
-  {path: 'formation/details/:id', component: FormationDetailsComponent },
-  {path: '', component: AuthentComponent}
+  {path: 'formation/details/:id', component: FormationDetailsComponent }
+
 
 ];
