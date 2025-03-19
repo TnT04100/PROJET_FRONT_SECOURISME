@@ -4,6 +4,7 @@ import Formation from './models/formation.interface';
 import { FormationService } from './services/formation.service';
 import { DatePipe, NgForOf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import {MenuComponent} from '../../../shared/menu/menu.component';
 
 @Component({
   selector: 'app-formation-list',
@@ -11,7 +12,8 @@ import { FormsModule } from '@angular/forms';
     DatePipe,
     NgForOf,
     FormsModule,
-    RouterLink
+    RouterLink,
+    MenuComponent
   ],
   templateUrl: './formation-list.component.html',
   styleUrl: './formation-list.component.css'
@@ -20,9 +22,14 @@ export class FormationListComponent {
 
   formations: Formation[];
   private _search: string = '';
+  startDate: string = '';
+  endDate: string = '';
+  displayedCount: number = 0;
+  diplomeFilter: string = '';
 
   constructor(private formationService: FormationService, private router: Router) {
     this.formations = formationService.getAll().map(formation => ({ ...formation, selected: false }));
+    this.updateDisplayedCount();
   }
 
   get search(): string {
@@ -33,18 +40,28 @@ export class FormationListComponent {
     this._search = value;
   }
 
-  get filteredFormations(): Formation[] {
-    return this.formations.filter(formation =>
-      formation.name.toLowerCase().includes(this._search.toLowerCase())
-    );
+  updateDisplayedCount(): void {
+    this.displayedCount = this.filteredFormations.length;
   }
 
   delete(id: number | undefined): void {
     if (id) {
       this.formationService.delete(id);
-      this.formations = this.formationService.getAll().map(formation => ({ ...formation, selected: false }));
+      this.formations = this.formationService.getAll();
+      this.updateDisplayedCount();
     }
   }
+
+  get filteredFormations(): Formation[] {
+    return this.formations.filter(formation => {
+      const matchesSearch = formation.name.toLowerCase().includes(this.search.toLowerCase());
+      const matchesStartDate = !this.startDate || new Date(formation.dateDebut).toISOString().split('T')[0] === this.startDate;
+      const matchesEndDate = !this.endDate || new Date(formation.dateFin).toISOString().split('T')[0] === this.endDate;
+      const matchesDiplome = !this.diplomeFilter || formation.diplome === this.diplomeFilter;
+      return matchesSearch && matchesStartDate && matchesEndDate && matchesDiplome;
+    });
+  }
+
 
   showSelectedDetails(): void {
     const selectedFormation = this.formations.find(formation => formation.selected);

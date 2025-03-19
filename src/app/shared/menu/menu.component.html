@@ -1,0 +1,96 @@
+<!-- Barre de recherche -->
+<section class="search-section">
+  <img src="https://www.defense.gouv.fr/sites/default/files/styles/16_9_sm/public/ema/Logo_EMA_Illustration.png?h=52c4eadb&itok=kRvzOAb7" alt="Icone Recherche" class="search-img">
+  <input type="text" placeholder="Recherche..." class="search-bar">
+  <!--  <a routerLink="/login" class="login-link btn">Se connecter</a>-->
+</section>
+
+<!-- Navigation -->
+
+<nav class="navbar">
+  <ul class="main-menu">
+    <li><a routerLink="/accueil">Accueil</a></li>
+    <li>
+      <a class="nav-link">Formations</a>
+      <ul class="sub-menu">
+        <li><a routerLink="/formation">Liste des formations</a></li>
+        <li><a routerLink="/formation/form">Création d'une formation</a></li>
+      </ul>
+    </li>
+    <li>
+      <a class="nav-link">Formateurs</a>
+      <ul class="sub-menu">
+        <li><a routerLink="/formateur">Liste des formateurs</a></li>
+        <li><a routerLink="/formateur/form">Ajouter un formateur</a></li>
+      </ul>
+    </li>
+    <li>
+      <a class="nav-link">Stagiaires</a>
+      <ul class="sub-menu">
+        <li><a routerLink="/stagiaire">Liste des stagiaires</a></li>
+        <li><a routerLink="/stagiaire/form">Ajouter un stagiaire</a></li>
+      </ul>
+    </li>
+    <li>
+      <a class="nav-link">Rubrique</a>
+      <ul class="sub-menu">
+        <li class="has-submenu">
+          <a>Gestion des documents</a>
+          <ul class="nested-menu">
+            <li><a routerLink="/documents/create">Vue d'ensemble</a></li>
+            <li><a routerLink="/documents/upload">Filtres</a></li>
+            <li><a routerLink="/documents/archive">Rechercher un document</a></li>
+          </ul>
+        </li>
+        <li class="has-submenu">
+          <a>Edition des Notes de Service</a>
+          <ul class="nested-menu">
+            <li><a routerLink="/notes/nouvelle">Créer une nouvelle note de service</a></li>
+            <li><a routerLink="/notes/modeles">Liste des Notes de Service</a></li>
+            <li><a routerLink="/notes/historique">Modèles de Notes de Service</a></li>
+          </ul>
+        </li>
+        <li class="has-submenu">
+          <a>Edition des Feuilles d'émargement</a>
+          <ul class="nested-menu">
+            <li><a routerLink="/emargement/creer">Créer une feuille d'émargement</a></li>
+            <li><a routerLink="/emargement/modifier">Liste des feuilles d'émargement</a></li>
+            <li><a routerLink="/emargement/consulter">Modèles de feuille d'émargement</a></li>
+          </ul>
+        </li>
+        <li class="has-submenu">
+          <a>Edition des Procès-Verbaux</a>
+          <ul class="nested-menu">
+            <li><a routerLink="/pv/nouveau">Créer un Procès-verbal</a></li>
+            <li><a routerLink="/pv/modeles">Liste des Procès-Verbaux</a></li>
+            <li><a routerLink="/pv/historique">Modèles de Procès-Verbaux</a></li>
+          </ul>
+        </li>
+        <li class="has-submenu">
+          <a>Edition des diplômes</a>
+          <ul class="nested-menu">
+            <li><a routerLink="/diplomes/generer">Créer un diplôme</a></li>
+            <li><a routerLink="/diplomes/modeles">Liste des diplômes</a></li>
+            <li><a routerLink="/diplomes/historique">Modèles de diplômes</a></li>
+          </ul>
+        </li>
+        <li class="has-submenu">
+          <a>Recueil des signataires</a>
+          <ul class="nested-menu">
+            <li><a routerLink="/signatures/ajouter">Liste des signataires</a></li>
+            <li><a routerLink="/signatures/gerer">Ajouter un signataire</a></li>
+            <li><a routerLink="/signatures/historique">Suivi des signatures</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a class="nav-link">Suivi des aptitudes</a>
+      <ul class="sub-menu">
+        <li><a routerLink="/stagiaires/liste">Tableau de bord des aptitudes</a></li>
+        <li><a routerLink="/stagiaires/progression">Vue par Stagiaires</a></li>
+        <li><a routerLink="/stagiaires/progression">Vue par Formations</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>

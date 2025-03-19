@@ -1,4 +1,5 @@
-<h2>Creer un stagiaire</h2>
+<app-menu></app-menu>
+<h2>Ajouter un stagiaire</h2>
 
 <form>
   <label for="NID">NID</label>
@@ -15,14 +16,18 @@
   <label for="prenom">prenom</label>
   <input [(ngModel)]="stagiaireForm.prenom" id="prenom" name="prenom" type="text">
 
+
   <label for="dateNaissance">dateNaissance</label>
-  <input [(ngModel)]="stagiaireForm.dateNaissance" id="dateNaissance" name="dateNaissance" type="text">
+  <input type="date" [(ngModel)]="stagiaireForm.dateNaissance" id="dateNaissance" name="dateNaissance" placeholder="Date de naissance" />
 
   <label for="villeNaissance">villeNaissance</label>
   <input [(ngModel)]="stagiaireForm.villeNaissance" id="villeNaissance" name="villeNaissance" type="text">
 
+  <div class="button-group">
+    <button (click)="valider()">Valider</button>
+    <button (click)="annuler()">Annuler</button>
+  </div>
 
-  <button (click)="valider()">Valider</button>
 </form>
 
 

@@ -5,13 +5,15 @@ import {FormationService} from '../formation-list/services/formation.service';
 import Formation from '../formation-list/models/formation.interface';
 import {Diplome} from '../formation-list/models/diplome.type';
 import {NgForOf} from '@angular/common';
+import {MenuComponent} from "../../../shared/menu/menu.component";
 
 @Component({
   selector: 'app-formation-form',
-  imports: [
-    FormsModule,
-    NgForOf
-  ],
+    imports: [
+        FormsModule,
+        NgForOf,
+        MenuComponent
+    ],
   templateUrl: './formation-form.component.html',
   styleUrl: './formation-form.component.css'
 })
@@ -59,6 +61,10 @@ export class FormationFormComponent {
       diplome: psc
 
     };
+  }
+
+  annuler() {
+    this.router.navigate(['/formation'])
   }
 }
 

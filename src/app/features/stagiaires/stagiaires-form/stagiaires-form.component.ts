@@ -1,16 +1,18 @@
 import { Component } from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {NgForOf} from "@angular/common";
+import {DatePipe, NgForOf} from "@angular/common";
 import Stagiaire from '../models/stagiaires.interface';
 import {ActivatedRoute, Router} from '@angular/router';
 import {StagiairesService} from '../services/stagiaires.service';
+import {MenuComponent} from "../../../shared/menu/menu.component";
 
 @Component({
   selector: 'app-stagiaires-form',
     imports: [
         FormsModule,
         ReactiveFormsModule,
-        NgForOf
+        NgForOf,
+        MenuComponent
     ],
   templateUrl: './stagiaires-form.component.html',
   styleUrl: './stagiaires-form.component.css'
@@ -44,7 +46,7 @@ export class StagiairesFormComponent {
 
   valider(): void{
     this.stagiaireService.save(this.stagiaireForm)
-    this.router.navigate(['/dino/list'])
+    this.router.navigate(['/stagiaire'])
   }
 
   private getBlankDino(): Stagiaire {
@@ -58,5 +60,9 @@ export class StagiairesFormComponent {
 
 
     };
+  }
+
+  annuler() {
+    this.router.navigate(['/stagiaire'])
   }
 }

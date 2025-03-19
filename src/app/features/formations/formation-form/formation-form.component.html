@@ -1,3 +1,4 @@
+<app-menu></app-menu>
 <h2> Creer une formation</h2>
 
 <form>
@@ -6,15 +7,21 @@
   <input [(ngModel)]="formationForm.name" id="name" name="name" type="text">
   <label for="diplome">diplome</label>
   <select [(ngModel)]="formationForm.diplome" name="diplome" id="diplome">
-    <option *ngFor="let diplome of diplome" [value]="diplome"> {{diplome}}" </option>
+    <option *ngFor="let diplome of diplome" [value]="diplome"> {{diplome}} </option>
   </select>
-  <label for="dateDebut">dateDebut</label>
-  <input [(ngModel)]="formationForm.dateDebut" id="dateDebut" name="dateFin" type="text">
-  <label for="dateFin">dateFin</label>
-  <input [(ngModel)]="formationForm.dateFin" id="dateFin" name="dateFin" type="text">
+
+  <label for="dateDebut">date debut </label>
+  <input type="date" [(ngModel)]="formationForm.dateDebut" id="dateDebut" name="dateDebut" placeholder="Date de debut" />
+
+  <label for="dateFin">date fin </label>
+  <input type="date" [(ngModel)]="formationForm.dateFin" id="dateFin" name="dateFin" placeholder="Date de fin" />
 
 
-  <button (click)="valider()">Valider</button>
+  <div class="button-group">
+    <button (click)="valider()">Valider</button>
+    <button (click)="annuler()">Annuler</button>
+  </div>
+
 </form>
 
 

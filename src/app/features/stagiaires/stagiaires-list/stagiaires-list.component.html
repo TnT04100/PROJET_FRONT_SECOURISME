@@ -1,36 +1,55 @@
+<app-menu></app-menu>
 <h2> Liste des stagiaires </h2>
 
-<button [routerLink]="['/formation/form']">NOUVELLE FORMATION</button>
+<button [routerLink]="['/stagiaire/form']">AJOUTER STAGIAIRE</button>
+
 <table>
   <thead>
   <tr>
-    <th>Id</th>
-    <th> NID</th>
-    <th>Civilite</th>
-    <th>Nom</th>
-    <th>Prenom</th>
-    <th>Date naissance</th>
-    <th>Ville naissance</th>
-
-
-
+    <th>
+      NID <br>
+      <input type="text" [(ngModel)]="nidFilter" (ngModelChange)="updateDisplayedCount()" placeholder="Rechercher par NID" />
+    </th>
+    <th>
+      Civilite <br>
+      <select [(ngModel)]="civiliteFilter" (ngModelChange)="updateDisplayedCount()">
+        <option value="">Toutes les civilités</option>
+        <option value="M">M</option>
+        <option value="Mme">Mme</option>
+        <option value="Autres">Autres</option>
+      </select>
+    </th>
+    <th>
+      Nom <br>
+      <input type="text" [(ngModel)]="nomFilter" (ngModelChange)="updateDisplayedCount()" placeholder="Rechercher par nom" />
+    </th>
+    <th>
+      Prenom <br>
+      <input type="text" [(ngModel)]="prenomFilter" (ngModelChange)="updateDisplayedCount()" placeholder="Rechercher par prénom" />
+    </th>
+    <th>
+      Date naissance <br>
+      <input type="date" [(ngModel)]="dateNaissanceFilter" (ngModelChange)="updateDisplayedCount()" placeholder="Rechercher par date de naissance" />
+    </th>
+    <th>
+      Ville naissance <br>
+      <input type="text" [(ngModel)]="villeNaissanceFilter" (ngModelChange)="updateDisplayedCount()" placeholder="Rechercher par ville de naissance" />
+    </th>
+    <th>Nombre de personnes affichées: {{ displayedCount }}</th>
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let stagiaire of stagiaires">
-    <td>{{ stagiaire.id }}</td>
+  <tr *ngFor="let stagiaire of filteredStagiaires">
     <td>{{ stagiaire.NID }}</td>
-    <td>{{ stagiaire.civilite}}</td>
+    <td>{{ stagiaire.civilite }}</td>
     <td>{{ stagiaire.nom }}</td>
-    <td>{{ stagiaire.prenom}}</td>
-    <td>{{ stagiaire.dateNaissance  | date:'dd/MM/yyyy'}}</td>
-    <td>{{ stagiaire.villeNaissance}}</td>
-
-
+    <td>{{ stagiaire.prenom }}</td>
+    <td>{{ stagiaire.dateNaissance | date:'dd/MM/yyyy' }}</td>
+    <td>{{ stagiaire.villeNaissance }}</td>
     <td>
       <button (click)="delete(stagiaire.id)">Supprimer</button>
-      <button routerLink="/formation/form/{{stagiaire.id}}">Modifier</button>
-      <button routerLink="/stagiaire/form/{{stagiaire.id}}">Ajouter un participant</button>
+      <button routerLink="/stagiaire/form/{{ stagiaire.id }}">Modifier</button>
+      <button routerLink="/stagiaire/form/{{ stagiaire.id }}">Ajouter un participant</button>
     </td>
   </tr>
   </tbody>

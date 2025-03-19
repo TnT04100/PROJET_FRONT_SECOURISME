@@ -7,13 +7,15 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {FormationService} from '../../formations/formation-list/services/formation.service';
 import {FormateursService} from '../services/formateurs.service';
 import Formateurs from '../models/formateurs.interface';
+import {MenuComponent} from "../../../shared/menu/menu.component";
 
 @Component({
   selector: 'app-formateur-form',
     imports: [
         FormsModule,
         ReactiveFormsModule,
-        NgForOf
+        NgForOf,
+        MenuComponent
     ],
   templateUrl: './formateur-form.component.html',
   styleUrl: './formateur-form.component.css'
@@ -36,20 +38,20 @@ export class FormateurFormComponent {
   ) {
     this.route.paramMap.subscribe(params => {
       const id = params.get('id')
-      if(id){
-        this.formateursForm = this.formateursService.getById(parseInt(id)) ?? this.getBlankDino()
-      }else{
-        this.formateursForm = this.getBlankDino()
+      if (id) {
+        this.formateursForm = this.formateursService.getById(parseInt(id)) ?? this.getBlankFormateur()
+      } else {
+        this.formateursForm = this.getBlankFormateur()
       }
     })
   }
 
   valider(): void{
     this.formateursService.save(this.formateursForm)
-    this.router.navigate(['/dino/list'])
+    this.router.navigate(['/formateur'])
   }
 
-  private getBlankDino(): Stagiaire {
+  private getBlankFormateur(): Stagiaire {
     return {
       NID: '',
       nom: '',
@@ -60,5 +62,9 @@ export class FormateurFormComponent {
 
 
     };
+  }
+
+  annuler() {
+    this.router.navigate(['/formateur'])
   }
 }

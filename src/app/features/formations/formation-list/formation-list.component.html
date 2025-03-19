@@ -1,25 +1,40 @@
+
+<app-menu></app-menu>
 <h2>Liste des formations</h2>
 
 <button [routerLink]="['/formation/form']">NOUVELLE FORMATION</button>
-<input type="text" [(ngModel)]="search" placeholder="Rechercher une formation" />
 <button (click)="showSelectedDetails()">Afficher les détails</button>
 
 <table>
   <thead>
   <tr>
     <th>Selectionner</th>
-    <th>Id</th>
-    <th>Type de formation</th>
-    <th>Nom</th>
-    <th>Date debut</th>
-    <th>Date fin</th>
-    <th>Actions</th>
+    <th>Type de diplome <br>
+      <select [(ngModel)]="diplomeFilter" (ngModelChange)="updateDisplayedCount()">
+        <option value="">Toutes les diplomes</option>
+        <option value="PSC1">PSC1</option>
+        <option value="SC1">SC1</option>
+        <option value="SC2">SC2</option>
+      </select>
+    </th>
+    <th>
+      Nom <br>
+      <input type="text" [(ngModel)]="search" (ngModelChange)="updateDisplayedCount()" placeholder="Rechercher une formation" />
+    </th>
+    <th>
+      Date debut <br>
+      <input type="date" [(ngModel)]="startDate" (ngModelChange)="updateDisplayedCount()" placeholder="Date de début" />
+    </th>
+    <th>
+      Date fin <br>
+      <input type="date" [(ngModel)]="endDate" (ngModelChange)="updateDisplayedCount()" placeholder="Date de fin" />
+    </th>
+    <th>Nombre de formations affichées: {{ displayedCount }}</th>
   </tr>
   </thead>
   <tbody>
   <tr *ngFor="let formation of filteredFormations">
     <td><input type="checkbox" [(ngModel)]="formation.selected"></td>
-    <td>{{ formation.id }}</td>
     <td>{{ formation.diplome }}</td>
     <td>{{ formation.name }}</td>
     <td>{{ formation.dateDebut | date:'dd/MM/yyyy' }}</td>
@@ -34,7 +49,6 @@
   </tbody>
 </table>
 
-<button (click)="showSelectedDetails()">Afficher les détails</button>
 
 <!-- Footer -->
 <footer class="footer">

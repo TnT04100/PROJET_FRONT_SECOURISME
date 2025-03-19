@@ -55,7 +55,7 @@ export class FormationService {
       return;
     }
     if (formation.id) {
-      const index = this.formations.findIndex(formation => formation.id === formation.id);
+      const index = this.formations.findIndex(f => f.id === formation.id);
       if (index !== -1) {
         this.formations[index] = {...formation};
       }
