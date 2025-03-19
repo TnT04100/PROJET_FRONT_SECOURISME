@@ -1,0 +1,170 @@
+body{
+  margin: 0; /* supprime les marges */
+  padding: 0; /* supprime les padding */
+  border: 0;
+}
+
+.titre{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+h1{
+  color: #f30924;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-size: 50px;
+  text-align: center;
+  z-index: 1;
+}
+
+.background-img{
+  width: 100%; /* ajuste la largeur de l'image à 100% */
+  height: 100vh; /* ajuste la hauteur de l'image à 100% de la hauteur de la vue */
+  object-fit: cover; /* ajuste l'image pour couvrir toute la zone */
+  position: absolute; /* permet de définir la position de l'image */
+  top: 100px; /* positionne l'image en haut de la page */
+  left: 0;
+  z-index: 0
+}
+
+.img-ema{
+  width: 10%;
+}
+
+.img-croix{
+  width: 150px;
+  margin-left: -80px;
+  margin-top: -45px;
+  z-index: 1;
+  position: fixed;
+}
+
+.img-brevet{
+  width: 120px;
+  margin-left: 270px;
+  margin-top: -100px;
+  z-index: 1;
+  position: fixed;
+}
+
+.img-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+.container{
+  height: 550px;
+  width: 450px;
+  border: 2px solid rgba(18, 17, 17, 0.4);
+  border-radius: 10px;
+  background: rgba(216, 210, 210, 0.3);
+  backdrop-filter: blur(4px);
+  box-shadow: 0 0 5px rgba(0,0,0,.2), 0 0 15px rgba(0,0,0,.2), 0 0 30px rgba(0,0,0,.2);
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  position: relative;
+  z-index: 1;
+  margin-top: 100px;
+}
+
+.container .form-box{
+  margin-top: 30px;
+}
+
+.container .form-box h2{
+  text-align: center;
+}
+
+input[type="text"], input[type="password"], textarea {
+  color: #fbfbfb;
+}
+
+.form-box .input-box{
+  margin: 35px 0;
+  width: 330px;
+  border-bottom: 2px solid rgba(241, 236, 236, 0.7);
+  position: relative;
+}
+
+.form-box .input-box input{
+  background: rgba(216, 210, 210, 0.15);
+  border: none;
+  outline: none;
+  width: 100%;
+  height: 40px;
+  padding: 0 65px 0 5px;
+}
+
+.form-box h2{
+  color: #faf3f3;
+}
+
+.form-box .input-box label{
+  font-weight: 400;
+  letter-spacing: .5px;
+  color: #fafafa;
+  position: absolute;
+  left: 5px;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: .5s ease;
+}
+
+.input-box input:focus ~ label,
+.input-box input:valid ~ label{
+  top: -5px;
+}
+
+.input-box img{
+  position: absolute;
+  right: 5px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+}
+
+.forget-section{
+  display: flex;
+  justify-content: space-between;
+  font-size: 15px;
+  margin: 15px 0 15px;
+}
+
+.forget-section p{
+  display: flex;
+  align-items: center;
+}
+
+.forget-section p input{
+  accent-color: darkblue;
+  margin: 0 3px;
+}
+
+.forget-section a{
+  text-decoration: none;
+  color: #f6f2f2;
+}
+
+.forget-section a:hover{
+  text-decoration: underline;
+}
+
+.btn{
+  height: 45px;
+  width: 100%;
+  border-radius: 50px;
+  color: white;
+  background-color: darkblue;
+  border: 2px solid blue;
+  outline: none;
+  font-size: 16px;
+  cursor: pointer;
+  letter-spacing: 1px;
+  margin-top: 10px;
+}
