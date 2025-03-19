@@ -4,16 +4,19 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {FormationService} from '../formation-list/services/formation.service';
 import Formation from '../formation-list/models/formation.interface';
 import {Diplome} from '../formation-list/models/diplome.type';
-import {NgForOf} from '@angular/common';
+import {NgForOf, NgIf} from '@angular/common';
 import {MenuComponent} from "../../../shared/menu/menu.component";
+import {PopUpComponent} from '../../pop-up/pop-up.component';
 
 @Component({
   selector: 'app-formation-form',
-    imports: [
-        FormsModule,
-        NgForOf,
-        MenuComponent
-    ],
+  imports: [
+    FormsModule,
+    NgForOf,
+    MenuComponent,
+    PopUpComponent,
+    NgIf,
+  ],
   templateUrl: './formation-form.component.html',
   styleUrl: './formation-form.component.css'
 })
@@ -66,6 +69,23 @@ export class FormationFormComponent {
   annuler() {
     this.router.navigate(['/formation'])
   }
+
+
+// gestion Pop-up
+  isValidationPopUpVisible = false;
+  popUpContent = 'Voulez vous valider cette formation ?';
+
+  showValidationPopUp() {
+    this.isValidationPopUpVisible = true;
+    this.popUpContent = `Voulez-vous valider " ${this.formationForm.name} " ?`;
+  }
+
+  confirmValidation() {
+    this.valider(); // Sauvegarde la formation
+    this.isValidationPopUpVisible = false;
+  }
+
+
 }
 
 

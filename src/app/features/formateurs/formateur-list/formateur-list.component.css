@@ -12,6 +12,8 @@ th, td {
 
 th {
   background-color: #f2f2f2;
+  color: black;
+  font-weight: bold;
 }
 
 tr:nth-child(even) {
@@ -61,3 +63,10 @@ tr:hover {
   transform: translateY(-2px);
 }
 
+h2{
+  color: #d50101;
+  font-weight: bold;
+  text-align: center;
+  font-size: 2rem; /* Adjust the size as needed */
+
+}

@@ -30,6 +30,7 @@ export class PopUpComponent {
 
   // Méthode pour fermer le PopUp
   closePopUp() {
+    this.isVisible = false;
     this.close.emit();
   }
   confirmAction() {
