@@ -1,7 +1,21 @@
 <app-menu></app-menu>
+
+<div class="calendar-navigation">
+  <button class="nav-button" (click)="navigatePrevious()">&#9664; Mois précédent</button>
+  <button class="nav-button" (click)="navigateToday()">Aujourd'hui</button>
+  <button class="nav-button" (click)="navigateNext()">Mois suivant &#9654;</button>
+</div>
+
 <div class="calendar-container">
-  <full-calendar class="full-calendar" [options]="calendarOptions1"></full-calendar>
-  <full-calendar class="full-calendar" [options]="calendarOptions2"></full-calendar>
+  <div class="calendar">
+    <div class="calendar-header">{{ currentMonthYear1 }}</div>
+    <full-calendar #calendar1 class="full-calendar" [options]="calendarOptions1"></full-calendar>
+  </div>
+
+  <div class="calendar">
+    <div class="calendar-header">{{ currentMonthYear2 }}</div>
+    <full-calendar #calendar2 class="full-calendar" [options]="calendarOptions2"></full-calendar>
+  </div>
 </div>
 
 <app-pop-up
