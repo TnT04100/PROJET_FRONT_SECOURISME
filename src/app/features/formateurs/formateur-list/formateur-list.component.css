@@ -25,44 +25,6 @@ tr:hover {
 }
 
 
-
-/* Footer */
-.footer {
-  margin-top: auto;
-  background-color: #002f6c;
-  color: white;
-  padding: 2rem;
-  text-align: left;
-  width: 100%;
-}
-
-.footer-img {
-  height: 150px;
-  margin-bottom: 1.5rem;
-  display: flex;
-  justify-content: left;
-}
-
-.footer-links {
-  margin: 1.5rem 0;
-  display: flex;
-  justify-content: left;
-  gap: 2rem;
-}
-
-.footer-links a {
-  color: white;
-  text-decoration: none;
-  font-size: 1.1rem;
-  transition: all 0.3s ease;
-  padding: 0.5rem 1rem;
-}
-
-.footer-links a:hover {
-  color: #66b3ff;
-  transform: translateY(-2px);
-}
-
 h2{
   color: #d50101;
   font-weight: bold;
