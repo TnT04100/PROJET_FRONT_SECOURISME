@@ -7,7 +7,7 @@ import {routes} from './app.routes'; // Import FullCalendar
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, RouterLink],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

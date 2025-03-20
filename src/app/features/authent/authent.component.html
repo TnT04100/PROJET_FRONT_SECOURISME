@@ -1,6 +1,6 @@
 <body>
 <div class="img-container">
-  <img class="background-img" src="assets/images/massage-authentification.jpg">
+  <img class="background-img" src="assets/images/massage-authentification.jpg" alt="image de fond d'écran avec 3 hommes dont un noir qui font un massage cardiaque à un mannequin">
 </div>
 <form (ngSubmit)="login()">
     <div class="container">
@@ -12,12 +12,12 @@
           <div class="input-box">
             <input name="identifiant" id="nid" type="text" [(ngModel)]="username" required>
             <label>NID</label>
-            <img src="assets/images/user-3-fill.svg">
+            <img src="assets/images/user-3-fill.svg" alt="image user">
           </div>
           <div class="input-box">
             <input name="motDePasse" id="password" type="password" [(ngModel)]="password" required>
             <label>Mot de passe</label>
-            <img src="assets/images/bxs-lock.svg">
+            <img src="assets/images/bxs-lock.svg" alt="image lock">
           </div>
           <div class="forget-section">
             <p>
@@ -27,7 +27,7 @@
             <a href="#">Mot de passe oublié?</a>
           </div>
           <button type="submit" (click)="login()" id="buttonConnexion" class="btn">Connexion</button>
-          <button id="buttonPlanning" class="btn">Accès planning</button>
+          <button routerLink="/accueil" id="buttonPlanning" class="btn">Accès planning</button>
           </div>
         </div>
       </div>

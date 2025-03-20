@@ -7,6 +7,7 @@ import { FormsModule } from "@angular/forms";
 import {MenuComponent} from "../../../shared/menu/menu.component";
 import {PopUpComponent} from '../../pop-up/pop-up.component';
 import Formateurs from '../../formateurs/models/formateurs.interface';
+import {FormateursService} from '../../formateurs/services/formateurs.service';
 
 @Component({
   selector: 'app-stagiaires-list',
@@ -23,7 +24,8 @@ import Formateurs from '../../formateurs/models/formateurs.interface';
 })
 export class StagiairesListComponent {
 
-  stagiaires: Stagiaire[];
+  stagiaires: Stagiaire[] = [];
+
   private _search: string = '';
   nidFilter: string = '';
   civiliteFilter: string = '';
@@ -33,9 +35,21 @@ export class StagiairesListComponent {
   villeNaissanceFilter: string = '';
   displayedCount: number = 0;
 
-  constructor(private stagiairesService: StagiairesService) {
-    this.stagiaires = stagiairesService.getAll();
+  constructor(private stagiaireService: StagiairesService) {
+    this.getStagiaires();
     this.updateDisplayedCount();
+  }
+
+  getStagiaires(): void {
+    this.stagiaireService.getAll().subscribe(
+      stagiaire => {
+        this.stagiaires = stagiaire;
+        this.updateDisplayedCount();
+      },
+      error => {
+        console.error('Error fetching stagiaires', error);
+      }
+    );
   }
 
   updateDisplayedCount(): void {
@@ -44,20 +58,23 @@ export class StagiairesListComponent {
 
   delete(id: number | undefined): void {
     if (id) {
-      this.stagiairesService.delete(id);
-      this.stagiaires = this.stagiairesService.getAll();
-      this.updateDisplayedCount();
+      this.stagiaireService.delete(id).subscribe(
+        {
+          next:() => { this.getStagiaires();}
+        }
+      );
+      this.stagiaireService.getAll();
     }
   }
 
   get filteredStagiaires(): Stagiaire[] {
     return this.stagiaires.filter(stagiaires => {
-      const matchesNID = stagiaires.NID.toLowerCase().includes(this.nidFilter.toLowerCase());
+      const matchesNID = stagiaires.numeroIdentifiantDefense.toLowerCase().includes(this.nidFilter.toLowerCase());
       const matchesCivilite = !this.civiliteFilter || stagiaires.civilite === this.civiliteFilter;
       const matchesNom = stagiaires.nom.toLowerCase().includes(this.nomFilter.toLowerCase());
       const matchesPrenom = stagiaires.prenom.toLowerCase().includes(this.prenomFilter.toLowerCase());
-      const matchesDateNaissance = !this.dateNaissanceFilter || new Date(stagiaires.dateNaissance).toISOString().split('T')[0] === this.dateNaissanceFilter;
-      const matchesVilleNaissance = stagiaires.villeNaissance.toLowerCase().includes(this.villeNaissanceFilter.toLowerCase());
+      const matchesDateNaissance = !this.dateNaissanceFilter || new Date(stagiaires.dateDeNaissance).toISOString().split('T')[0] === this.dateNaissanceFilter;
+      const matchesVilleNaissance = stagiaires.villeDeNaissance.toLowerCase().includes(this.villeNaissanceFilter.toLowerCase());
       return matchesNID && matchesCivilite && matchesNom && matchesPrenom && matchesDateNaissance && matchesVilleNaissance;
     });
   }
