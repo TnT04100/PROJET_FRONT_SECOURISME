@@ -54,11 +54,12 @@ export class FormateurListComponent {
 
   delete(id: number | undefined): void {
     if (id) {
-      this.formateurService.delete(id);
+      this.formateurService.delete(id).subscribe(
       {
-        next:()=> {this.getFormateurs()};
+        next:() => { this.getFormateurs();}
       }
-      this.updateDisplayedCount();
+    );
+      this.formateurService.getAll();
     }
   }
 

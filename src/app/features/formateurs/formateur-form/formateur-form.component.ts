@@ -46,7 +46,7 @@ export class FormateurFormComponent {
             },
             error: err => {
               this.formateursForm = this.getBlankFormateur();
-              console.error('Impossible de récupérer le dino', err);
+              console.error('Impossible de récupérer le formateur', err);
             }
           }
         )
