@@ -28,8 +28,8 @@ export class Services {
                   uploadDate: '15/04/2023 09:00',
                   fileType: 'Dossier de fichier',
                   children: [
-                    { name: 'NOM_FORMATEUR', uploadDate: '05/03/2022 10:00', fileType: 'Fichier PDF', taille: '1.2Mo' },
-                    { name: 'NOM_FORMATEUR_2', uploadDate: '10/03/2022 14:00', fileType: 'Fichier PDF', taille: '800Ko' }
+                    { name: 'AUTUSS', uploadDate: '05/03/2022 10:00', fileType: 'Dossier de fichier', children: [] },
+                    { name: 'PONDAVEN', uploadDate: '10/03/2022 14:00', fileType: 'Dossier de fichier', children: [] },
                   ]
                 }
               ]
@@ -45,9 +45,9 @@ export class Services {
                   uploadDate: '15/04/2023 09:00',
                   fileType: 'Dossier de fichier',
                   children: [
-                    { name: 'NOM_STAGIAIRE', uploadDate: '15/04/2023 09:00', fileType: 'Fichier PDF', taille: '1.2Mo' },
-                    { name: 'NOM_STAGIAIRE_2', uploadDate: '15/04/2023 09:00', fileType: 'Fichier PDF', taille: '1.2Mo' },
-                    { name: 'NOM_STAGIAIRE_3', uploadDate: '15/04/2023 09:00', fileType: 'Fichier PDF', taille: '800Ko' }
+                    { name: 'RAKOTO', uploadDate: '15/04/2023 09:00', fileType: 'Dossier de fichier', children: []},
+                    { name: 'JEAN-CLAUDE', uploadDate: '15/04/2023 09:00', fileType: 'Dossier de fichier',children: []},
+                    { name: 'PHILLIPE', uploadDate: '15/04/2023 09:00', fileType: 'Dossier de fichier',children: []},
                   ]
                 }
               ]
@@ -190,6 +190,61 @@ export class Services {
 
     // Pour un vrai téléchargement, il faudrait générer un lien dynamique
   }
+
+  // ✅ Ouvrir l'éditeur de documents
+  ouvrirEditeur() {
+    const templateSelection = prompt("📄 Choisissez un document à éditer : \n1️⃣ Note de Service \n2️⃣ Feuille d’émargement \n3️⃣ Diplôme");
+
+    if (!templateSelection) return;
+
+    let templateChoisi = "";
+    switch (templateSelection) {
+      case "1":
+        templateChoisi = "Note de Service";
+        break;
+      case "2":
+        templateChoisi = "Feuille d’émargement";
+        break;
+      case "3":
+        templateChoisi = "Diplôme";
+        break;
+      default:
+        alert("⚠️ Sélection invalide !");
+        return;
+    }
+
+    this.editerDocument(templateChoisi);
+  }
+
+  editerDocument(templateChoisi: string) {
+    const templates: Record<string, string> = {
+      "Note de Service": "Objet : Note de service\nDate : ${{DATE}}\nStagiaire : ${{NOM}}\nRéférence : ${{REFERENCE}}",
+      "Feuille d’émargement": "Nom : ${{NOM}}\nDate : ${{DATE}}\nSignature : ${{SIGNATURE}}",
+      "Diplôme": "Diplôme de : ${{NOM}}\nDate : ${{DATE}}\nValidé par : ${{SIGNATAIRE}}"
+    };
+
+    let documentModifie = templates[templateChoisi];
+
+    // ✅ Déclarer explicitement `valeurs` avec un `Record<string, string>`
+    const valeurs: Record<string, string> = {
+      NOM: prompt("Entrez le NOM :") || "N/A",
+      DATE: new Date().toLocaleDateString(),
+      REFERENCE: prompt("Entrez la RÉFÉRENCE :") || "N/A",
+      SIGNATURE: prompt("Entrez la signature :") || "N/A",
+      SIGNATAIRE: prompt("Nom du signataire :") || "N/A"
+    };
+
+    // ✅ Correction de l'erreur TS7053 en garantissant que `key` est une clé valide
+    Object.keys(valeurs).forEach((key) => {
+      documentModifie = documentModifie.replace(new RegExp(`\\\${{${key}}}`, 'g'), valeurs[key]);
+    });
+
+    const chemin = prompt("📂 Où enregistrer le document ?");
+    if (!chemin) return;
+
+    alert(`✅ Document sauvegardé dans ${chemin} :\n\n${documentModifie}`);
+  }
+
 }
 
 

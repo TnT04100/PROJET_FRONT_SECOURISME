@@ -4,7 +4,6 @@ import {Services} from './services/services.service';
 import Fichier from './models/interface';
 import {NgForOf, NgIf} from '@angular/common';
 
-
 @Component({
   selector: 'app-coffre-fort',
   imports: [RouterModule, NgForOf, NgIf],
@@ -53,20 +52,20 @@ export class CoffreFortComponent implements OnInit {
   }
 
 
-  // ✅ Paramètres (À implémenter)
-  ouvrirParametres() {
-    alert("⚙️ Ouverture des paramètres en cours de développement !");
-  }
+  // // ✅ Paramètres (À implémenter)
+  // ouvrirParametres() {
+  //   alert("⚙️ Ouverture des paramètres en cours de développement !");
+  // }
 
   // ✅ Déconnexion (À implémenter)
   seDeconnecter() {
     alert("🚪 Déconnexion en cours...");
-    this.router.navigate(['/login']); // Redirige vers une éventuelle page de connexion
+    this.router.navigate(['']); // Redirige vers une éventuelle page de connexion
   }
 
   // ✅ Retour à l'accueil
   retourAccueil() {
-    this.router.navigate(['/']);
+    this.router.navigate(['/accueil']);
   }
 
   ouvrirExplorateur() {
@@ -106,11 +105,23 @@ export class CoffreFortComponent implements OnInit {
     alert(`🗑 Le fichier "${fichier.name}" a été supprimé.`);
   }
 
-  // ✅ Vérifie s'il y a au moins un fichier pour afficher la colonne "Actions"
-  doitAfficherActions(): boolean {
-    return this.fichiersAffiches.some(fichier => fichier.fileType.startsWith('Fichier'));
+  // // ✅ Vérifie s'il y a au moins un fichier pour afficher la colonne "Actions"
+  // doitAfficherActions(): boolean {
+  //   return this.fichiersAffiches.some(fichier => fichier.fileType.startsWith('Fichier'));
+  // }
+
+
+  modifierDossier(fichier: Fichier) {
+    const nouveauNom = prompt("📁 Renommer le dossier", fichier.name);
+    if (nouveauNom && nouveauNom.trim() !== "") {
+      fichier.name = nouveauNom.trim();
+      this.mettreAJourAffichage();
+    }
   }
 
 
-
+  ouvrirEditeur() {
+  this.coffreFortService.ouvrirEditeur();
+  this.mettreAJourAffichage();
+  }
 }

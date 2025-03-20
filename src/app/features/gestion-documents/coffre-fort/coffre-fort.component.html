@@ -22,8 +22,7 @@
     <!-- Champ de sélection de fichier caché -->
     <button (click)="ouvrirExplorateur()">📄 Ajouter un fichier</button>
     <button (click)="ajouterDossier()">📁 Créer un dossier</button>
-
-    <button (click)="ouvrirParametres()">⚙️ Paramètres</button>
+    <button (click)="ouvrirEditeur()">📝 Editer un document</button>
   </nav>
 
   <h2 class="h2">Mes Documents</h2>
@@ -39,7 +38,7 @@
       <th>Modifié le</th>
       <th>Type</th>
       <th>Taille</th>
-      <th *ngIf="doitAfficherActions()">Actions</th>
+      <th>Actions</th>
 
     </tr>
     </thead>
@@ -55,6 +54,7 @@
       <td>{{ fichier.taille }}</td>
       <td>
         <button *ngIf="fichier.fileType.startsWith('Fichier')" (click)="supprimerFichier(fichier)">🗑️ Supprimer</button>
+        <button *ngIf="fichier.fileType === 'Dossier de fichier'" (click)="modifierDossier(fichier)">Renommer</button>
       </td>
     </tr>
     </tbody>
