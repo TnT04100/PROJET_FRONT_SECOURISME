@@ -27,6 +27,8 @@
       Prenom <br>
       <input type="text" [(ngModel)]="prenomFilter" (ngModelChange)="updateDisplayedCount()" placeholder="Rechercher par prénom" />
     </th>
+    <th>Grade</th>
+    <th>ID de l'Unité</th>
     <th>
       Date naissance <br>
       <input type="date" [(ngModel)]="dateNaissanceFilter" (ngModelChange)="updateDisplayedCount()" placeholder="Rechercher par date de naissance" />
@@ -40,12 +42,14 @@
   </thead>
   <tbody>
   <tr *ngFor="let stagiaire of filteredStagiaires">
-    <td>{{ stagiaire.NID }}</td>
+    <td>{{ stagiaire.numeroIdentifiantDefense }}</td>
     <td>{{ stagiaire.civilite }}</td>
     <td>{{ stagiaire.nom }}</td>
     <td>{{ stagiaire.prenom }}</td>
-    <td>{{ stagiaire.dateNaissance | date:'dd/MM/yyyy' }}</td>
-    <td>{{ stagiaire.villeNaissance }}</td>
+    <td>{{ stagiaire.grade }}</td>
+    <td>{{ stagiaire.uniteId }}</td>
+    <td>{{ stagiaire.dateDeNaissance | date:'dd/MM/yyyy' }}</td>
+    <td>{{ stagiaire.villeDeNaissance }}</td>
     <td>
       <button (click)="showDeleteConfirmation(stagiaire)">Supprimer</button>
       <button routerLink="/stagiaire/form/{{ stagiaire.id }}">Modifier</button>
