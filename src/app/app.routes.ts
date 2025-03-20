@@ -8,6 +8,7 @@ import {FormateurListComponent} from './features/formateurs/formateur-list/forma
 import {FormationDetailsComponent} from './features/formations/formation-details/formation-details.component';
 import {AccueilComponent} from './features/accueil/accueil.component';
 import {AuthentComponent} from './features/authent/authent.component';
+import {CookieComponent} from './features/cookie/cookie.component';
 
 
 export const routes: Routes = [
@@ -24,7 +25,8 @@ export const routes: Routes = [
   {path: 'formateur/form', component: FormateurFormComponent},
   {path: 'formateur/form/:id', component: FormateurFormComponent},
   {path: 'formation', component: FormationListComponent },
-  {path: 'formation/details/:id', component: FormationDetailsComponent }
+  {path: 'formation/details/:id', component: FormationDetailsComponent },
+  {path: 'cookie', component: CookieComponent},
 
 
 ];
