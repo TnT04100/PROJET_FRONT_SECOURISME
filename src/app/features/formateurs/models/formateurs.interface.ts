@@ -1,5 +1,5 @@
-import {Civilite} from './civilite.type';
-import {Grade} from './grade.type';
+import {Civilite} from '../../../shared/models/references/civilite.type';
+import {Grade} from '../../../shared/models/references/grade.type';
 
 
 export default interface Formateurs {

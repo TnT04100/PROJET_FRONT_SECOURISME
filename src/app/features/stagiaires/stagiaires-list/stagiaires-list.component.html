@@ -40,12 +40,12 @@
   </thead>
   <tbody>
   <tr *ngFor="let stagiaire of filteredStagiaires">
-    <td>{{ stagiaire.NID }}</td>
+    <td>{{ stagiaire.numeroIdentifiantDefense }}</td>
     <td>{{ stagiaire.civilite }}</td>
     <td>{{ stagiaire.nom }}</td>
     <td>{{ stagiaire.prenom }}</td>
-    <td>{{ stagiaire.dateNaissance | date:'dd/MM/yyyy' }}</td>
-    <td>{{ stagiaire.villeNaissance }}</td>
+    <td>{{ stagiaire.dateDeNaissance | date:'dd/MM/yyyy' }}</td>
+    <td>{{ stagiaire.villeDeNaissance }}</td>
     <td>
       <button (click)="showDeleteConfirmation(stagiaire)">Supprimer</button>
       <button routerLink="/stagiaire/form/{{ stagiaire.id }}">Modifier</button>

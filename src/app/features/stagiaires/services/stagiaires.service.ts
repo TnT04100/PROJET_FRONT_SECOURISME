@@ -1,92 +1,59 @@
 import {Injectable} from '@angular/core';
 
-import {Civilite} from '../models/civilite.type';
-import Stagiaire from '../models/stagiaires.interface';
-import Formation from '../../formations/formation-list/models/formation.interface';
+
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {Observable, Subscription} from 'rxjs';
+import Stagiaires from '../../formateurs/models/formateurs.interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StagiairesService {
 
-  private stagiaire: Stagiaire[] = [
-    {
-      id: 1,
-      NID: '1234',
-      nom: 'Verstappen',
-      prenom: 'Max',
-      dateNaissance: new Date(),
-      villeNaissance: 'Hasselt',
-      civilite: 'M'
+  private apiUrl = "http://172.16.64.193:8080/api/v1/stagiaires/";
 
-    },
-    {
-      id: 2,
-      NID: '5678',
-      nom: 'Hamilton',
-      prenom: 'Lewis',
-      dateNaissance: new Date(),
-      villeNaissance: 'Stevenage',
-      civilite: 'M'
-    },
-    {
-      id: 3,
-      NID: '91011',
-      nom: 'Leclerc',
-      prenom: 'Charles',
-      dateNaissance: new Date(),
-      villeNaissance: 'Monte Carlo',
-      civilite: 'M'
-    },
-    {
-      id: 4,
-      NID: '121314',
-      nom: 'Norris',
-      prenom: 'Lando',
-      dateNaissance: new Date(),
-      villeNaissance: 'Bristol',
-      civilite: 'M'
+  constructor(private http: HttpClient) {}
 
-    }
-
-  ];
-
-  constructor() {
-
+  private getHttpOptions() {
+    const token = localStorage.getItem('jwtToken');
+    return {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      })
+    };
   }
 
-  getAll(): Stagiaire[] {
-    return this.stagiaire;
+  getAll(): Observable<Stagiaires[]> {
+    return this.http.get<Stagiaires[]>(this.apiUrl, this.getHttpOptions());
   }
 
-  getById(id: number): Stagiaire | undefined {
-    return this.stagiaire.find(stagiaire => stagiaire.id === id);
+  getById(id: number): Observable<Stagiaires> {
+    return this.http.get<Stagiaires>(`${this.apiUrl}${id}/`, this.getHttpOptions());
   }
 
-  save(stagiaire: Stagiaire): void {
+  save(stagiaire: Stagiaires): Subscription {
     if (!stagiaire) {
-      return;
+      throw new Error("Pas d'id de stagiaire");
     }
     if (stagiaire.id) {
-      const index = this.stagiaire.findIndex(s => s.id === stagiaire.id);
-      if (index !== -1) {
-        this.stagiaire[index] = {...stagiaire};
-      }
+      return this.http.put<Stagiaires>(`${this.apiUrl}${stagiaire.id}/`, stagiaire, this.getHttpOptions()).subscribe(
+        {
+          next: (response) => console.log("Reponse de l'Api", response)
+        }
+      );
     } else {
-      stagiaire.id = this.getLastId() + 1;
-      this.stagiaire.push({...stagiaire});
+      return this.http.post<Stagiaires>(this.apiUrl, stagiaire, this.getHttpOptions()).subscribe(
+        {
+          next: (response) => {
+            console.log("Réponse de l'API : ", response);
+          }
+        }
+      );
     }
   }
 
-
-
-  delete(id: number): void {
-    this.stagiaire = this.stagiaire.filter(stagiaire => stagiaire.id !== id);
-  }
-
-
-  private getLastId() {
-    //2eme facon de coder cette methode
-    return this.stagiaire.length > 0 ? Math.max(...this.stagiaire.map(stagiaire => stagiaire.id ?? 0)) : 0;
+  delete(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}${id}/`, this.getHttpOptions());
   }
 }

@@ -24,9 +24,9 @@ export class StagiairesFormComponent {
 
 
   civilite: String[] = [
-    'M',
-    'Mme',
-    'autre',
+    'MONSIEUR',
+    'MADAME',
+    'AUTRE',
 
   ]
 
@@ -38,11 +38,21 @@ export class StagiairesFormComponent {
     private route: ActivatedRoute
   ) {
     this.route.paramMap.subscribe(params => {
-      const id = params.get('id')
-      if(id){
-        this.stagiaireForm = this.stagiaireService.getById(parseInt(id)) ?? this.getBlankDino()
-      }else{
-        this.stagiaireForm = this.getBlankDino()
+      const id = params.get('id');
+      if (id) {
+        this.stagiaireService.getById(parseInt(id)).subscribe(
+          {
+            next: formateur => {
+              this.stagiaireForm = formateur;
+            },
+            error: err => {
+              this.stagiaireForm = this.getBlankStagiaire();
+              console.error('Impossible de récupérer le formateur', err);
+            }
+          }
+        )
+      } else {
+        this.stagiaireForm = this.getBlankStagiaire();
       }
     })
   }
@@ -52,16 +62,16 @@ export class StagiairesFormComponent {
     this.router.navigate(['/stagiaire'])
   }
 
-  private getBlankDino(): Stagiaire {
-    return {
-      NID: '',
+  private getBlankStagiaire(): Stagiaire {
+    return <Stagiaire>{
+      numeroIdentifiantDefense: '',
       nom: '',
       prenom: '',
-      civilite: 'M',
-      dateNaissance: new Date(),
-      villeNaissance: ''
-
-
+      civilite: 'MONSIEUR',
+      dateDeNaissance: new Date(),
+      villeDeNaissance: '',
+      grade:'Adjudant',
+      uniteId:0
     };
   }
 
@@ -79,7 +89,7 @@ export class StagiairesFormComponent {
                         ${this.stagiaireForm.nom}"
                         ${this.stagiaireForm.prenom}
                         ayant le NID :
-                        ${this.stagiaireForm.NID} " ?`;
+                        ${this.stagiaireForm.numeroIdentifiantDefense} " ?`;
   }
 
   confirmValidation() {
