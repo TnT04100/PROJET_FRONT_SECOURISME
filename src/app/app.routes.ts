@@ -9,6 +9,7 @@ import {FormationDetailsComponent} from './features/formations/formation-details
 import {AccueilComponent} from './features/accueil/accueil.component';
 import {AuthentComponent} from './features/authent/authent.component';
 import {CookieComponent} from './features/cookie/cookie.component';
+import {CoffreFortComponent} from './features/gestion-documents/coffre-fort/coffre-fort.component';
 
 
 export const routes: Routes = [
@@ -27,6 +28,7 @@ export const routes: Routes = [
   {path: 'formation', component: FormationListComponent },
   {path: 'formation/details/:id', component: FormationDetailsComponent },
   {path: 'cookie', component: CookieComponent},
+  {path: 'coffre-fort', component: CoffreFortComponent}
 
 
 ];

@@ -120,8 +120,8 @@ export class CoffreFortComponent implements OnInit {
   }
 
 
-  ouvrirEditeur() {
-  this.coffreFortService.ouvrirEditeur();
-  this.mettreAJourAffichage();
-  }
+  // ouvrirEditeur() {
+  // this.coffreFortService.ouvrirEditeur();
+  // this.mettreAJourAffichage();
+  // }
 }
