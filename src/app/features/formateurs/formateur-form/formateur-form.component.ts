@@ -92,7 +92,7 @@ export class FormateurFormComponent {
                         ${this.formateursForm.nom}"
                         ${this.formateursForm.prenom}
                         ayant le NID :
-                        ${this.formateursForm.NID} " ?`;
+                        ${this.formateursForm.numeroIdentifiantDefense} " ?`;
   }
 
   confirmValidation() {
