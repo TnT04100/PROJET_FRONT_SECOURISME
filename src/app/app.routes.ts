@@ -1,4 +1,4 @@
-import { Routes } from '@angular/router';
+import {Routes} from '@angular/router';
 import {FormationListComponent} from './features/formations/formation-list/formation-list.component';
 import {FormationFormComponent} from './features/formations/formation-form/formation-form.component';
 import {StagiairesFormComponent} from './features/stagiaires/stagiaires-form/stagiaires-form.component';
@@ -8,11 +8,11 @@ import {FormateurListComponent} from './features/formateurs/formateur-list/forma
 import {FormationDetailsComponent} from './features/formations/formation-details/formation-details.component';
 import {AccueilComponent} from './features/accueil/accueil.component';
 import {AuthentComponent} from './features/authent/authent.component';
-import {CoffreFortComponent} from './features/gestion-documents/coffre-fort/coffre-fort.component';
+
 
 export const routes: Routes = [
 
-  {path:'', component: AuthentComponent},
+  {path: '', component: AuthentComponent},
   {path: 'accueil', component: AccueilComponent},
   {path: 'formation', component: FormationListComponent},
   {path: 'formation/form', component: FormationFormComponent},
@@ -23,9 +23,8 @@ export const routes: Routes = [
   {path: 'formateur', component: FormateurListComponent},
   {path: 'formateur/form', component: FormateurFormComponent},
   {path: 'formateur/form/:id', component: FormateurFormComponent},
-  { path: 'formation', component: FormationListComponent },
-  { path: 'formation/details/:id', component: FormationDetailsComponent },
-  {path: 'coffre-fort', component: CoffreFortComponent},
+  {path: 'formation', component: FormationListComponent },
+  {path: 'formation/details/:id', component: FormationDetailsComponent }
 
 
 ];

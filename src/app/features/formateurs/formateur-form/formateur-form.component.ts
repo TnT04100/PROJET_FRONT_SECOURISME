@@ -42,7 +42,17 @@ export class FormateurFormComponent {
     this.route.paramMap.subscribe(params => {
       const id = params.get('id')
       if (id) {
-        this.formateursForm = this.formateursService.getById(parseInt(id)) ?? this.getBlankFormateur()
+        this.formateursService.getById(parseInt(id)).subscribe(
+          {
+            next: formateur => {
+              this.formateursForm = formateur;
+            },
+            error: err => {
+              this.formateursForm = this.getBlankFormateur();
+              console.error('Impossible de récupérer le formateur', err);
+            }
+          }
+        )
       } else {
         this.formateursForm = this.getBlankFormateur()
       }
@@ -54,16 +64,16 @@ export class FormateurFormComponent {
     this.router.navigate(['/formateur'])
   }
 
-  private getBlankFormateur(): Stagiaire {
-    return {
-      NID: '',
+  private getBlankFormateur(): Formateurs {
+    return <Formateurs>{
+      numeroIdentifiantDefense: '',
       nom: '',
       prenom: '',
-      civilite: 'M',
-      dateNaissance: new Date(),
-      villeNaissance: ''
-
-
+      civilite: 'MONSIEUR',
+      dateDeNaissance: new Date(),
+      villeDeNaissance: '',
+      uniteId: 0,
+      grade: 'Adjudant'
     };
   }
 

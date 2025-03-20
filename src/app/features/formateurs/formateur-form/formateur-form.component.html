@@ -3,7 +3,7 @@
 
 <form>
   <label for="NID">NID</label>
-  <input [(ngModel)]="formateursForm.NID" id="NID" name="NID" type="text">
+  <input [(ngModel)]="formateursForm.numeroIdentifiantDefense" id="NID" name="NID" type="text">
 
   <label for="civilite">civilite</label>
   <select [(ngModel)]="formateursForm.civilite" name="civilite" id="civilite">
@@ -17,10 +17,14 @@
   <input [(ngModel)]="formateursForm.prenom" id="prenom" name="prenom" type="text">
 
   <label for="dateNaissance">dateNaissance</label>
-  <input type="date" [(ngModel)]="formateursForm.dateNaissance" id="dateNaissance" name="dateNaissance" placeholder="Date de naissance" />
+  <input type="date" [(ngModel)]="formateursForm.dateDeNaissance" id="dateNaissance" name="dateNaissance" placeholder="Date de naissance" />
 
   <label for="villeNaissance">villeNaissance</label>
-  <input [(ngModel)]="formateursForm.villeNaissance" id="villeNaissance" name="villeNaissance" type="text">
+  <input [(ngModel)]="formateursForm.villeDeNaissance" id="villeNaissance" name="villeNaissance" type="text">
+
+  <label for="grade">grade</label>
+  <input [(ngModel)]="formateursForm.grade" id="grade" name="grade" type="text">
+
 
   <div class="button-group">
     <button (click)="showValidationPopUp()">Valider</button>
