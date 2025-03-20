@@ -27,6 +27,8 @@
       Prenom <br>
       <input type="text" [(ngModel)]="prenomFilter" (ngModelChange)="updateDisplayedCount()" placeholder="Rechercher par prénom" />
     </th>
+    <th>Grade</th>
+    <th>ID de l'Unité</th>
     <th>
       Date naissance <br>
       <input type="date" [(ngModel)]="dateNaissanceFilter" (ngModelChange)="updateDisplayedCount()" placeholder="Rechercher par date de naissance" />
@@ -64,18 +66,3 @@
   (confirm)="confirmDeletion()">
 </app-pop-up>
 
-<!-- Footer -->
-<footer class="footer">
-  <div class="footer-left">
-    <img src="https://th.bing.com/th/id/R.2e1eec8cceb7a6abf8865d3e67e5f091?rik=Mr3TpMikRYuQHQ&pid=ImgRaw&r=0" alt="Logo Ministère des Armées" class="footer-img">
-    <div class="footer-links">
-      <a href="#">FAQ</a>
-      <a href="#">Gestion des Cookies</a>
-    </div>
-  </div>
-  <div class="footer-right">
-    <p>Ministère des Armées 2025 - 20XX</p>
-    <span class="separator">|</span>
-    <a href="#">Mentions Légales</a>
-  </div>
-</footer>
