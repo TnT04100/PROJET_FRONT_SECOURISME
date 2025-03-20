@@ -26,9 +26,9 @@ import {PopUpComponent} from '../../pop-up/pop-up.component';
 export class FormateurFormComponent {
 
   civilite: String[] = [
-    'M',
-    'Mme',
-    'autre',
+    'MR',
+    'MADAME',
+    'AUTRE',
 
   ]
 
@@ -92,7 +92,7 @@ export class FormateurFormComponent {
                         ${this.formateursForm.nom}"
                         ${this.formateursForm.prenom}
                         ayant le NID :
-                        ${this.formateursForm.NID} " ?`;
+                        ${this.formateursForm.numeroIdentifiantDefense} " ?`;
   }
 
   confirmValidation() {
