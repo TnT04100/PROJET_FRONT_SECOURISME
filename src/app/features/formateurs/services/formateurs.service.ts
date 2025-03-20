@@ -1,33 +1,32 @@
-import {Injectable} from '@angular/core';
-
-import {Civilite} from '../models/civilite.type';
-import Stagiaire from '../models/formateurs.interface';
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable, Subscription } from 'rxjs';
 import Formateurs from '../models/formateurs.interface';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {Observable, Subscription} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FormateursService {
-
   private apiUrl = "http://172.16.64.193:8080/api/v1/formateurs/";
 
-  private httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json'
-    })
-  };
+  constructor(private http: HttpClient) {}
 
-  constructor(private http: HttpClient) {
+  private getHttpOptions() {
+    const token = localStorage.getItem('jwtToken');
+    return {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      })
+    };
   }
 
   getAll(): Observable<Formateurs[]> {
-    return this.http.get<Formateurs[]>(this.apiUrl);
+    return this.http.get<Formateurs[]>(this.apiUrl, this.getHttpOptions());
   }
 
   getById(id: number): Observable<Formateurs> {
-    return this.http.get<Formateurs>(`${this.apiUrl}${id}/`);
+    return this.http.get<Formateurs>(`${this.apiUrl}${id}/`, this.getHttpOptions());
   }
 
   save(formateur: Formateurs): Subscription {
@@ -35,16 +34,13 @@ export class FormateursService {
       throw new Error("Pas d'id de formateur");
     }
     if (formateur.id) {
-      console.log("Passage avec ID")
-      return this.http.put<Formateurs>(`${this.apiUrl}${formateur.id}/`,formateur,this.httpOptions).subscribe(
+      return this.http.put<Formateurs>(`${this.apiUrl}${formateur.id}/`, formateur, this.getHttpOptions()).subscribe(
         {
-          next: (response) => console.log("Reponse de l'Api",response)
+          next: (response) => console.log("Reponse de l'Api", response)
         }
-      )
-    }
-    else {
-      console.log("Passage sans ID")
-      return this.http.post<Formateurs>(`${this.apiUrl}`,formateur,this.httpOptions).subscribe(
+      );
+    } else {
+      return this.http.post<Formateurs>(this.apiUrl, formateur, this.getHttpOptions()).subscribe(
         {
           next: (response) => {
             console.log("Réponse de l'API : ", response);
@@ -54,9 +50,7 @@ export class FormateursService {
     }
   }
 
-
   delete(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}${id}/`);
+    return this.http.delete<void>(`${this.apiUrl}${id}/`, this.getHttpOptions());
   }
-
 }

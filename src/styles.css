@@ -1,7 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
 @import url("app/reset.css");
+@import url("app/resetCSS.css");
 
 html{
   font-family: "Franklin Gothic Medium", sans-serif;
 }
-@import url("app/resetCSS.css");
+

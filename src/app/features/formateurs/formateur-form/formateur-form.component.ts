@@ -26,9 +26,9 @@ import {PopUpComponent} from '../../pop-up/pop-up.component';
 export class FormateurFormComponent {
 
   civilite: String[] = [
-    'M',
-    'Mme',
-    'autre',
+    'MR',
+    'MADAME',
+    'AUTRE',
 
   ]
 
