@@ -43,3 +43,99 @@ img{
   width: 100px;
   margin-right: 20px;
 }
+
+
+/* Footer */
+
+
+
+.footer {
+  margin-top: auto;
+  background-color: darkblue;
+  color: white;
+  padding: 1rem;
+  text-align: left;
+  width: 100%;
+  max-width: 98%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-left {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem; /* Reduced gap */
+}
+
+.footer-img {
+  height: 100px; /* Reduced height */
+  margin-bottom: 1rem; /* Reduced margin */
+}
+
+.footer-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.footer-links a {
+  color: white;
+  text-decoration: none;
+  font-size: 1rem; /* Reduced font size */
+  transition: all 0.3s ease;
+  padding: 0.5rem 1rem;
+}
+
+.footer-links a:hover {
+  color: darkblue;
+  transform: translateY(-2px);
+}
+
+.footer-right {
+  display: flex;
+  flex-direction: row; /* Change to row to place items side by side */
+  align-items: center; /* Align items to the center */
+  gap: 1rem; /* Add some space between the items */
+  max-width: 50%;
+  overflow-wrap: break-word;
+}
+
+.footer-right h3, .footer-right p {
+  margin: 0;
+  padding: 0;
+}
+
+.footer-right p {
+  font-size: 0.9rem; /* Reduced font size */
+  line-height: 1.5;
+  text-align: right;
+  margin: 0;
+  padding: 0;
+}
+
+.footer-right a {
+  color: white;
+  text-decoration: none;
+  font-size: 0.9rem; /* Reduced font size */
+  transition: all 0.3s ease;
+  padding: 0.5rem 1rem;
+}
+
+.footer-right a:hover {
+  color: #66b3ff;
+  transform: translateY(-2px);
+}
+
+.footer-social {
+  display: flex;
+  gap: 1rem;
+}
+
+.footer-social a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.5rem; /* Reduced font size */
+  transition: all 0.3s ease;
+}
