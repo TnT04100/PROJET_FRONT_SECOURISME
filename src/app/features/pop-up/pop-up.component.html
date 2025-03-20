@@ -1,0 +1,12 @@
+<div *ngIf="isVisible" class="overlay" (click)="closePopUp()">
+
+  <div class="pop-up-content" (click)="$event.stopPropagation()">
+    <button class="close-btn" (click)="closePopUp()">X</button>
+    <h2>{{ title }}</h2>
+    <p [innerHTML]="content"></p>
+    <ng-container *ngIf="type === 'confirmation'">
+      <button (click)="confirmAction()">Confirmer </button>
+      <button (click)="closePopUp()">Annuler</button>
+    </ng-container>
+  </div>
+</div>

@@ -3,12 +3,9 @@
 <h2>Liste des formations</h2>
 
 <button [routerLink]="['/formation/form']">NOUVELLE FORMATION</button>
-<button (click)="showSelectedDetails()">Afficher les détails</button>
-
 <table>
   <thead>
   <tr>
-    <th>Selectionner</th>
     <th>Type de diplome <br>
       <select [(ngModel)]="diplomeFilter" (ngModelChange)="updateDisplayedCount()">
         <option value="">Toutes les diplomes</option>
@@ -34,13 +31,12 @@
   </thead>
   <tbody>
   <tr *ngFor="let formation of filteredFormations">
-    <td><input type="checkbox" [(ngModel)]="formation.selected"></td>
     <td>{{ formation.diplome }}</td>
-    <td>{{ formation.name }}</td>
+    <td><button (click)="showDetails(formation)">{{ formation.name }}</button></td>
     <td>{{ formation.dateDebut | date:'dd/MM/yyyy' }}</td>
     <td>{{ formation.dateFin | date:'dd/MM/yyyy' }}</td>
     <td>
-      <button (click)="delete(formation.id)">Supprimer</button>
+      <button (click)="showDeleteConfirmation(formation)">Supprimer</button>
       <button [routerLink]="'/formation/form/' + formation.id">Modifier</button>
       <button [routerLink]="['/stagiaire']">Ajouter un participant</button>
       <button [routerLink]="['/formateur']">Ajouter un formateur</button>
@@ -49,19 +45,21 @@
   </tbody>
 </table>
 
+<!--Pop-up suppresion-->
+<app-pop-up
+  [isVisible]="isPopUpVisible"
+  [title]="popUpTitle"
+  [content]="popUpContent"
+  [type]="'confirmation'"
+  (close)="hidePopUp()"
+  (confirm)="confirmDeletion()">
+</app-pop-up>
 
-<!-- Footer -->
-<footer class="footer">
-  <div class="footer-left">
-    <img src="https://th.bing.com/th/id/R.2e1eec8cceb7a6abf8865d3e67e5f091?rik=Mr3TpMikRYuQHQ&pid=ImgRaw&r=0" alt="Logo Ministère des Armées" class="footer-img">
-    <div class="footer-links">
-      <a href="#">FAQ</a>
-      <a href="#">Gestion des Cookies</a>
-    </div>
-  </div>
-  <div class="footer-right">
-    <p>Ministère des Armées 2025 - 20XX</p>
-    <span class="separator">|</span>
-    <a href="#">Mentions Légales</a>
-  </div>
-</footer>
+<!-- Pop-up pour afficher les détails -->
+<app-pop-up
+  [isVisible]="isDetailPopUpVisible"
+  [title]="'Détails de la formation'"
+  [content]="popUpContent"
+  (close)="hideDetailPopUp()">
+</app-pop-up>
+

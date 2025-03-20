@@ -1,12 +1,15 @@
-import {Civilite} from './civilite.type';
+import {Civilite} from '../../../shared/models/references/civilite.type';
+import {Grade} from '../../../shared/models/references/grade.type';
 
 
 export default interface Formateurs {
   id?: number
-  NID: String
+  numeroIdentifiantDefense: String
   nom: String
   prenom: String
-  dateNaissance: Date
-  villeNaissance: String
+  dateDeNaissance: Date
+  villeDeNaissance: String
   civilite: Civilite
+  grade: Grade
+  uniteId: number
 }

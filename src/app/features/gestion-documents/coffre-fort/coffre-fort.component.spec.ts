@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AuthentComponent } from './authent.component';
+import { CoffreFortComponent } from './coffre-fort.component';
 
-describe('AuthentComponent', () => {
-  let component: AuthentComponent;
-  let fixture: ComponentFixture<AuthentComponent>;
+describe('CoffreFortComponent', () => {
+  let component: CoffreFortComponent;
+  let fixture: ComponentFixture<CoffreFortComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AuthentComponent]
+      imports: [CoffreFortComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(AuthentComponent);
+    fixture = TestBed.createComponent(CoffreFortComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -5,6 +5,7 @@ import { FormationService } from './services/formation.service';
 import { DatePipe, NgForOf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {MenuComponent} from '../../../shared/menu/menu.component';
+import {PopUpComponent} from '../../pop-up/pop-up.component';
 
 @Component({
   selector: 'app-formation-list',
@@ -13,7 +14,8 @@ import {MenuComponent} from '../../../shared/menu/menu.component';
     NgForOf,
     FormsModule,
     RouterLink,
-    MenuComponent
+    MenuComponent,
+    PopUpComponent
   ],
   templateUrl: './formation-list.component.html',
   styleUrl: './formation-list.component.css'
@@ -70,5 +72,50 @@ export class FormationListComponent {
     } else {
       alert('Veuillez sélectionner une formation.');
     }
+  }
+
+// gestion Pop-up
+  isPopUpVisible = false;
+  popUpTitle = 'Supression de la formation';
+  popUpContent = 'Voulez vous supprimer cette formation ?';
+  formationToDelete: any;
+
+  showDeleteConfirmation(formation: Formation) {
+    this.formationToDelete = formation;
+    this.popUpContent = `Voulez-vous supprimer " ${formation.name} " ?`;
+    this.isPopUpVisible = true;
+  }
+
+  hidePopUp() {
+    this.isPopUpVisible = false;
+  }
+
+  confirmDeletion() {
+    if (this.formationToDelete && this.formationToDelete.id) {
+      this.delete(this.formationToDelete.id);
+      this.isPopUpVisible = false;
+    }
+  }
+
+  // Pop-up Detail
+  isDetailPopUpVisible = false;
+  formationToShow: Formation | undefined;
+
+  // Gestion Pop-up pour les détails
+  showDetails(formation: Formation) {
+    this.formationToShow = formation;
+    this.popUpContent = `
+    <p><strong>ID :</strong> ${formation.id}</p><br>
+    <p><strong>Nom :</strong> ${formation.name}</p><br>
+    <p><strong>Type de formation :</strong> ${formation.diplome}</p><br>
+    <p><strong>Date de début :</strong> ${new Date(formation.dateDebut).toLocaleDateString()}</p><br>
+    <p><strong>Date de fin :</strong> ${new Date(formation.dateFin).toLocaleDateString()}</p>
+  `;
+    this.isDetailPopUpVisible = true;
+  }
+
+  // Fermer la pop-up des détails
+  hideDetailPopUp() {
+    this.isDetailPopUpVisible = false;
   }
 }

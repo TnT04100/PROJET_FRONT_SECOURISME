@@ -4,3 +4,10 @@
   <full-calendar class="full-calendar" [options]="calendarOptions2"></full-calendar>
 </div>
 
+<app-pop-up
+  [isVisible]="isPopUpVisible"
+  [title]="popUpTitle"
+  [content]="popUpContent"
+  [type]="'event'"
+  (close)="hidePopUp()">
+</app-pop-up>

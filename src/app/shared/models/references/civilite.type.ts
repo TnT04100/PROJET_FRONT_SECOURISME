@@ -1,6 +1,6 @@
 type Civilite =
-  'M' |
-  'Mme' |
-  'Autre';
+  'MONSIEUR' |
+  'MADAME' |
+  'AUTRE';
 
 export type{Civilite}
