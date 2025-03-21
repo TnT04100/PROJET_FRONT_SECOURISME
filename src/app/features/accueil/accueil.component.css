@@ -4,15 +4,14 @@
 }
 
 .full-calendar {
-  width: 45% !important; /* Chaque calendrier prend 45% de l’espace */
-  min-width: 300px !important; /* Empêche qu’ils deviennent trop petits */
+  width: 100% !important; /* Chaque calendrier prend 45% de l’espace */
 }
 
 .calendar-container {
   display: flex;
   justify-content: space-around; /* Espacement égal */
   gap: 20px; /* Espace entre les calendriers */
-  flex-wrap: wrap; /* Passer en colonne sur mobile */
+  flex-wrap: nowrap; /* Passer en colonne sur mobile */
 }
 
 .fc-daygrid-day {
@@ -22,4 +21,43 @@
 /* Change the background color of weekends */
 .fc-day-sat, .fc-day-sun {
   background-color: #cdc9c9; /* Light grey background for weekends */
+}
+
+.calendar-header {
+  text-align: center;
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+
+.calendar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 45%; /* Each calendar takes 45% of the space */
+  min-width: 300px; /* Prevents them from becoming too small */
+}
+
+.calendar-navigation {
+  display: flex;
+  justify-content: center; /* Center the buttons */
+  margin-bottom: 20px; /* Add some space below the buttons */
+}
+
+.nav-button {
+  background-color: #838383; /* Match the theme color */
+  border: none; /* Remove borders */
+  color: white; /* White text */
+  padding: 15px 32px; /* Some padding */
+  text-align: center; /* Center the text */
+  text-decoration: none; /* Remove underline */
+  display: inline-block; /* Make the buttons appear side by side */
+  font-size: 16px; /* Increase font size */
+  margin: 4px 2px; /* Some margin */
+  cursor: pointer; /* Pointer/hand icon */
+  border-radius: 12px; /* Rounded corners */
+  transition: background-color 0.3s; /* Smooth transition for hover effect */
+}
+
+.nav-button:hover {
+  background-color: #6e6e6e; /* Darker grey on hover */
 }
