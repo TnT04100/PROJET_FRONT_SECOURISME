@@ -171,7 +171,7 @@ body {
 }
 
 .navbar button:hover {
-  background: #00509e;
+  background: darkblue;
   transform: scale(1.05); /* Légère mise en avant au survol */
   box-shadow: 0 0 10px rgba(51, 51, 51, 0.5);
 }
@@ -212,13 +212,13 @@ table {
 
 
 .btn-delete:hover {
-  background: #0000ff;
+  background: darkblue;
   transform: scale(1.1);
 }
 
 /* Assurer que l'en-tête du tableau reste bien en bleu */
 th {
-  background-color: #00509e !important; /* Bleu foncé */
+  background-color: darkblue !important; /* Bleu foncé */
   color: white; /* Texte en blanc */
   text-align: center; /* Centre le texte */
   vertical-align: middle;
