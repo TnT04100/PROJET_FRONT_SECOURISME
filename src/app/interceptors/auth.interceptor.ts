@@ -12,7 +12,7 @@ export class AuthInterceptor implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     return next.handle(req).pipe(
       catchError((error: HttpErrorResponse) => {
-        if (error.status === 401) {
+        if (error.status === 401 || error.status === 500) {
           // Token expiré ou non autorisé, rediriger vers la page principale
           this.router.navigate(['/']);
         }
