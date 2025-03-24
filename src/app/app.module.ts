@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
 import { FullCalendarModule } from '@fullcalendar/angular';
@@ -17,6 +17,7 @@ import { FormateurListComponent } from './features/formateurs/formateur-list/for
 import { FormationDetailsComponent } from './features/formations/formation-details/formation-details.component';
 import { AccueilComponent } from './features/accueil/accueil.component';
 import { routes } from './app.routes';
+import {AuthInterceptor} from './interceptors/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,12 @@ import { routes } from './app.routes';
     FormationDetailsComponent,
     AccueilComponent
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [
+    {
+      provide : HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
+  ],
 })
 export class AppModule { }

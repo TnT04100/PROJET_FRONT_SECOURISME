@@ -1,27 +1,15 @@
-<div class="container">
-  <!-- Barre du haut -->
-  <div class="header">
-    <div class="logo">
-      <img src="assets/images/OIP-removebg-preview.png" alt="Logo EMA">
-    </div>
-    <div class="search-bar">
-      <input type="text" placeholder="Rechercher un document..." />
-      <button class="btn-cr">🔍</button>
-
-      <button (click)="seDeconnecter()">🚪 Déconnexion</button>
-    </div>
-  </div>
 
   <!-- Menu horizontal -->
   <nav class="navbar">
 
     <!-- Accueil -->
-    <button (click)="retourAccueil()">🏠 Accueil</button>
+    <button (click)="retourAccueil()">Accueil</button>
 
     <!-- Actions principales -->
     <!-- Champ de sélection de fichier caché -->
-    <button (click)="ouvrirExplorateur()">📄 Ajouter un fichier</button>
-    <button (click)="ajouterDossier()">📁 Créer un dossier</button>
+    <button (click)="ouvrirExplorateur()">Ajouter un fichier</button>
+    <button (click)="ajouterDossier()">Créer un dossier</button>
+
   </nav>
 
   <h2 class="h2">Mes Documents</h2>
@@ -44,44 +32,29 @@
     <tbody>
     <tr *ngFor="let fichier of fichiersAffiches" (click)="ouvrirDossier(fichier)">
       <td>
-        <span *ngIf="fichier.fileType === 'Dossier de fichier'">📘</span>
-        <span *ngIf="fichier.fileType !== 'Dossier de fichier'">📄</span>
+        <span *ngIf="fichier.fileType === 'Dossier de fichier'"></span>
+        <span *ngIf="fichier.fileType !== 'Dossier de fichier'"></span>
         {{ fichier.name }}
       </td>
       <td>{{ fichier.uploadDate }}</td>
       <td>{{ fichier.fileType }}</td>
       <td>{{ fichier.taille }}</td>
+
       <td>
-        <button *ngIf="fichier.fileType.startsWith('Fichier')" (click)="supprimerFichier(fichier)">🗑️ Supprimer</button>
+        <button *ngIf="fichier.fileType.startsWith('Fichier')" (click)="supprimerFichier(fichier)">Supprimer</button>
         <button *ngIf="fichier.fileType === 'Dossier de fichier'" (click)="modifierDossier(fichier)">Renommer</button>
       </td>
     </tr>
+
     </tbody>
+
+    <button (click)="retour()" [disabled]="chemin.length === 0">⬅ Retour</button>
   </table>
 
-  <!-- Bouton Retour -->
-  <div class="btn-return">
-    <button (click)="retour()" [disabled]="chemin.length === 0">⬅ Retour</button>
-  </div>
 
-</div>
 
-<!-- Footer -->
-<footer class="footer">
-  <div class="footer-left">
-    <img src="assets/images/logo-ministere-des-armees.png" alt="Logo Ministère des Armées" class="footer-img">
-    <div class="footer-links">
-      <a href="#">FAQ</a>
-      <span class="separator">|</span>
-      <a href="#">Gestion des Cookies</a>
-    </div>
-  </div>
-  <div class="footer-right">
-    <p>Ministère des Armées 2025 - 20XX</p>
-    <span class="separator">|</span>
-    <a class="link-mention" href="#">Mentions Légales</a>
-  </div>
-</footer>
+
+
 
 
 

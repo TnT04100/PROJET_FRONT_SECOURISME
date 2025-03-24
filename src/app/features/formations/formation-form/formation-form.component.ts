@@ -7,6 +7,9 @@ import {Diplome} from '../formation-list/models/diplome.type';
 import {NgForOf, NgIf} from '@angular/common';
 import {MenuComponent} from "../../../shared/menu/menu.component";
 import {PopUpComponent} from '../../pop-up/pop-up.component';
+import {FormateursService} from '../../formateurs/services/formateurs.service';
+import Formateurs from '../../formateurs/models/formateurs.interface';
+import Stagiaire from '../../stagiaires/models/stagiaires.interface';
 
 @Component({
   selector: 'app-formation-form',
@@ -42,7 +45,17 @@ export class FormationFormComponent {
     this.route.paramMap.subscribe(params => {
       const id = params.get('id')
       if (id) {
-        this.formationForm = this.formationService.getById(parseInt(id)) ?? this.getBlankFormation()
+        this.formationService.getById(parseInt(id)).subscribe(
+          {
+            next: formation => {
+              this.formationForm = formation;
+            },
+            error: err => {
+              this.formationForm = this.getBlankFormation();
+              console.error('Impossible de récupérer le formateur', err);
+            }
+          }
+        )
       } else {
         this.formationForm = this.getBlankFormation()
       }
@@ -58,11 +71,14 @@ export class FormationFormComponent {
   private getBlankFormation() {
     let psc: Diplome = 'PSC1'
     return {
-      name: '',
+      libelle: '',
       dateDebut: new Date(),
       dateFin: new Date(),
-      diplome: psc
-
+      diplome: psc,
+      salleFormation: '',
+      codeCours: '',
+      formateur: [],
+      stagiaires: [],
     };
   }
 
@@ -77,7 +93,7 @@ export class FormationFormComponent {
 
   showValidationPopUp() {
     this.isValidationPopUpVisible = true;
-    this.popUpContent = `Voulez-vous valider " ${this.formationForm.name} " ?`;
+    this.popUpContent = `Voulez-vous valider " ${this.formationForm.libelle} " ?`;
   }
 
   confirmValidation() {
