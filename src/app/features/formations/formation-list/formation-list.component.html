@@ -32,7 +32,7 @@
   <tbody>
   <tr *ngFor="let formation of filteredFormations">
     <td>{{ formation.diplome }}</td>
-    <td><button (click)="showDetails(formation)">{{ formation.name }}</button></td>
+    <td><button (click)="showDetails(formation)">{{ formation.libelle }}</button></td>
     <td>{{ formation.dateDebut | date:'dd/MM/yyyy' }}</td>
     <td>{{ formation.dateFin | date:'dd/MM/yyyy' }}</td>
     <td>

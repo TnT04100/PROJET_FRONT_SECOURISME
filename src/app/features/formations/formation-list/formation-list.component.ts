@@ -71,7 +71,7 @@ export class FormationListComponent {
 
   get filteredFormations(): Formation[] {
     return this.formations.filter(formation => {
-      const matchesSearch = formation.name.toLowerCase().includes(this.search.toLowerCase());
+      const matchesSearch = formation.libelle.toLowerCase().includes(this.search.toLowerCase());
       const matchesStartDate = !this.startDate || new Date(formation.dateDebut).toISOString().split('T')[0] === this.startDate;
       const matchesEndDate = !this.endDate || new Date(formation.dateFin).toISOString().split('T')[0] === this.endDate;
       const matchesDiplome = !this.diplomeFilter || formation.diplome === this.diplomeFilter;
@@ -97,7 +97,7 @@ export class FormationListComponent {
 
   showDeleteConfirmation(formation: Formation) {
     this.formationToDelete = formation;
-    this.popUpContent = `Voulez-vous supprimer " ${formation.name} " ?`;
+    this.popUpContent = `Voulez-vous supprimer " ${formation.libelle} " ?`;
     this.isPopUpVisible = true;
   }
 
@@ -121,7 +121,7 @@ export class FormationListComponent {
     this.formationToShow = formation;
     this.popUpContent = `
     <p><strong>ID :</strong> ${formation.id}</p><br>
-    <p><strong>Nom :</strong> ${formation.name}</p><br>
+    <p><strong>Nom :</strong> ${formation.libelle}</p><br>
     <p><strong>Type de formation :</strong> ${formation.diplome}</p><br>
     <p><strong>Date de début :</strong> ${new Date(formation.dateDebut).toLocaleDateString()}</p><br>
     <p><strong>Date de fin :</strong> ${new Date(formation.dateFin).toLocaleDateString()}</p>

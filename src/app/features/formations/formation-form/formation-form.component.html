@@ -4,7 +4,7 @@
 <form>
 
   <label for="name">name</label>
-  <input [(ngModel)]="formationForm.name" id="name" name="name" type="text">
+  <input [(ngModel)]="formationForm.libelle" id="name" name="name" type="text">
   <label for="diplome">diplome</label>
   <select [(ngModel)]="formationForm.diplome" name="diplome" id="diplome">
     <option *ngFor="let diplome of diplome" [value]="diplome"> {{diplome}} </option>
