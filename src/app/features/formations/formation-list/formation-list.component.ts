@@ -22,7 +22,7 @@ import {PopUpComponent} from '../../pop-up/pop-up.component';
 })
 export class FormationListComponent {
 
-  formations: Formation[];
+  formations: Formation[] = [];
   private _search: string = '';
   startDate: string = '';
   endDate: string = '';
@@ -30,8 +30,20 @@ export class FormationListComponent {
   diplomeFilter: string = '';
 
   constructor(private formationService: FormationService, private router: Router) {
-    this.formations = formationService.getAll().map(formation => ({ ...formation, selected: false }));
+    this.getFormations();
     this.updateDisplayedCount();
+  }
+
+  getFormations(): void {
+    this.formationService.getAll().subscribe(
+      formations => {
+        this.formations = formations;
+        this.updateDisplayedCount();
+      },
+      error => {
+        console.error('Error fetching formateurs', error);
+      }
+    );
   }
 
   get search(): string {
@@ -48,9 +60,12 @@ export class FormationListComponent {
 
   delete(id: number | undefined): void {
     if (id) {
-      this.formationService.delete(id);
-      this.formations = this.formationService.getAll();
-      this.updateDisplayedCount();
+      this.formationService.delete(id).subscribe(
+        {
+          next:() => { this.getFormations();}
+        }
+      );
+      this.formationService.getAll();
     }
   }
 

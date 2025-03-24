@@ -1,78 +1,59 @@
 import {Injectable} from '@angular/core';
 import Formation from '../models/formation.interface';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {Observable, Subscription} from 'rxjs';
+import Formateurs from '../../../formateurs/models/formateurs.interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FormationService {
 
-  private formations: Formation[] = [
-    {
-      id: 1,
-      name: 'Formation PSC1 Istres',
-      dateDebut: new Date('2023-01-01'),
-      dateFin: new Date('2023-01-10'),
-      diplome: 'PSC1'
-    },
-    {
-      id: 2,
-      name: 'Formation PSC1 Rochefort',
-      dateDebut: new Date('2023-02-01'),
-      dateFin: new Date('2023-02-10'),
-      diplome: 'PSC1'
-    },
-    {
-      id: 3,
-      name: 'Formation SC2 ETNC',
-      dateDebut: new Date('2023-03-01'),
-      dateFin: new Date('2023-03-10'),
-      diplome: 'SC2'
-    },
-    {
-      id: 4,
-      name: 'Formation SC2 Paris',
-      dateDebut: new Date('2023-04-01'),
-      dateFin: new Date('2023-04-10'),
-      diplome: 'SC2'
-    }
+  private apiUrl = "http://172.16.64.193:8080/api/v1/formations/";
 
-  ];
+  constructor(private http: HttpClient) {}
 
-  constructor() {
-
+  private getHttpOptions() {
+    const token = localStorage.getItem('jwtToken');
+    return {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      })
+    };
   }
 
-  getAll(): Formation[] {
-    return this.formations;
+
+  getAll(): Observable<Formation[]> {
+    return this.http.get<Formation[]>(this.apiUrl, this.getHttpOptions());
   }
 
-  getById(id: number): Formation | undefined {
-    return this.formations.find(formation => formation.id === id);
+  getById(id: number): Observable<Formation> {
+    return this.http.get<Formation>(`${this.apiUrl}${id}/`, this.getHttpOptions());
   }
 
-  save(formation: Formation): void {
+  save(formation: Formation): Subscription {
     if (!formation) {
-      return;
+      throw new Error("Pas d'id de formation");
     }
     if (formation.id) {
-      const index = this.formations.findIndex(f => f.id === formation.id);
-      if (index !== -1) {
-        this.formations[index] = {...formation};
-      }
+      return this.http.put<Formateurs>(`${this.apiUrl}${formation.id}/`, formation, this.getHttpOptions()).subscribe(
+        {
+          next: (response) => console.log("Reponse de l'Api", response)
+        }
+      );
     } else {
-      formation.id = this.getLastId() + 1;
-      this.formations.push({...formation});
+      return this.http.post<Formateurs>(this.apiUrl, formation, this.getHttpOptions()).subscribe(
+        {
+          next: (response) => {
+            console.log("Réponse de l'API : ", response);
+          }
+        }
+      );
     }
   }
 
-
-  delete(id: number): void {
-    this.formations = this.formations.filter(formation => formation.id !== id);
-  }
-
-
-  private getLastId() {
-    //2eme facon de coder cette methode
-    return this.formations.length > 0 ? Math.max(...this.formations.map(formation => formation.id ?? 0)) : 0;
+  delete(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}${id}/`, this.getHttpOptions());
   }
 }

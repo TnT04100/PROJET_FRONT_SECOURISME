@@ -7,6 +7,7 @@ import {Diplome} from '../formation-list/models/diplome.type';
 import {NgForOf, NgIf} from '@angular/common';
 import {MenuComponent} from "../../../shared/menu/menu.component";
 import {PopUpComponent} from '../../pop-up/pop-up.component';
+import {FormateursService} from '../../formateurs/services/formateurs.service';
 
 @Component({
   selector: 'app-formation-form',
@@ -42,7 +43,17 @@ export class FormationFormComponent {
     this.route.paramMap.subscribe(params => {
       const id = params.get('id')
       if (id) {
-        this.formationForm = this.formationService.getById(parseInt(id)) ?? this.getBlankFormation()
+        this.formationService.getById(parseInt(id)).subscribe(
+          {
+            next: formation => {
+              this.formationForm = formation;
+            },
+            error: err => {
+              this.formationForm = this.getBlankFormation();
+              console.error('Impossible de récupérer le formateur', err);
+            }
+          }
+        )
       } else {
         this.formationForm = this.getBlankFormation()
       }
