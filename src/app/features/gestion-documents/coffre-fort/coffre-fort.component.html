@@ -3,13 +3,12 @@
   <nav class="navbar">
 
     <!-- Accueil -->
-    <button (click)="retourAccueil()">🏠 Accueil</button>
+    <button (click)="retourAccueil()">Accueil</button>
 
     <!-- Actions principales -->
     <!-- Champ de sélection de fichier caché -->
-    <button (click)="ouvrirExplorateur()">📄 Ajouter un fichier</button>
-    <button (click)="ajouterDossier()">📁 Créer un dossier</button>
-    <button (click)="retour()" [disabled]="chemin.length === 0">⬅ Retour</button>
+    <button (click)="ouvrirExplorateur()">Ajouter un fichier</button>
+    <button (click)="ajouterDossier()">Créer un dossier</button>
 
   </nav>
 
@@ -33,19 +32,23 @@
     <tbody>
     <tr *ngFor="let fichier of fichiersAffiches" (click)="ouvrirDossier(fichier)">
       <td>
-        <span *ngIf="fichier.fileType === 'Dossier de fichier'">📘</span>
-        <span *ngIf="fichier.fileType !== 'Dossier de fichier'">📄</span>
+        <span *ngIf="fichier.fileType === 'Dossier de fichier'"></span>
+        <span *ngIf="fichier.fileType !== 'Dossier de fichier'"></span>
         {{ fichier.name }}
       </td>
       <td>{{ fichier.uploadDate }}</td>
       <td>{{ fichier.fileType }}</td>
       <td>{{ fichier.taille }}</td>
+
       <td>
-        <button *ngIf="fichier.fileType.startsWith('Fichier')" (click)="supprimerFichier(fichier)">🗑️ Supprimer</button>
+        <button *ngIf="fichier.fileType.startsWith('Fichier')" (click)="supprimerFichier(fichier)">Supprimer</button>
         <button *ngIf="fichier.fileType === 'Dossier de fichier'" (click)="modifierDossier(fichier)">Renommer</button>
       </td>
     </tr>
+
     </tbody>
+
+    <button (click)="retour()" [disabled]="chemin.length === 0">⬅ Retour</button>
   </table>
 
 

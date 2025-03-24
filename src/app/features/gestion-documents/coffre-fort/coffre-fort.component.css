@@ -147,39 +147,38 @@ body {
   box-shadow: 2px 0 10px rgb(253, 253, 253);
 }
 
+/* Style du conteneur */
 .navbar {
-  display: flex; /* Place les boutons en ligne */
-  justify-content: center; /* Centre les boutons horizontalement */
-  align-items: center; /* Aligne verticalement */
-  gap: 20px; /* Espacement entre chaque bouton */
-  padding: 15px 20px; /* Ajuste l'espace intérieur */
-  background: darkblue; /* Garde la couleur de fond */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-  width: 100%; /* Prend toute la largeur */
+  background-color: #00008B; /* Bleu foncé */
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
 }
 
+/* Style des boutons */
 .navbar button {
-  background: #5e5e5e;
+  background-color: transparent;
   color: white;
   border: none;
-  padding: 12px 20px; /* Augmente légèrement le padding horizontal */
-  text-align: center; /* Centre le texte */
-  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
   cursor: pointer;
-  transition: all 0.3s ease-in-out;
-  min-width: 120px; /* Assure que tous les boutons ont une taille minimum */
+  position: relative;
 }
 
+/* Ajout d'un effet de survol */
 .navbar button:hover {
-  background: darkblue;
-  transform: scale(1.05); /* Légère mise en avant au survol */
-  box-shadow: 0 0 10px rgba(51, 51, 51, 0.5);
+  text-decoration: underline;
 }
 
-/* Assure un espace constant entre chaque bouton */
-.navbar button:not(:last-child) {
-  margin-right: 15px;
+/* Ajout d'une flèche ▼ à côté du texte */
+.navbar button::after {
+  content: " ▼";
+  font-size: 12px;
 }
+
 
 
 
