@@ -3,17 +3,24 @@
 
 <form>
 
-  <label for="name">name</label>
-  <input [(ngModel)]="formationForm.libelle" id="name" name="name" type="text">
-  <label for="diplome">diplome</label>
-  <select [(ngModel)]="formationForm.diplome" name="diplome" id="diplome">
-    <option *ngFor="let diplome of diplome" [value]="diplome"> {{diplome}} </option>
+  <label for="name">Intitulé</label>
+  <input [(ngModel)]="formationForm.libelleFormation" id="name" name="name" type="text">
+  <label for="codeCours">Code Cours</label>
+  <input [(ngModel)]="formationForm.codeCours" id="codeCours" name="codeCours" type="text">
+  <label for="diplome">Diplôme</label>
+  <select [(ngModel)]="formationForm.uniteEnseignementId" name="diplome" id="diplome">
+    <option *ngFor="let diplome of uniteEnseignements" [value]="diplome.id"> {{diplome.intitule}} </option>
   </select>
-
-  <label for="dateDebut">date debut </label>
+  <label for="localisation">Localisation</label>
+  <select [(ngModel)]="formationForm.localisationId" name ="localisation" id="localisation">
+    <option *ngFor="let localisation of localisations" [value]="localisation.id"> {{localisation.adresse}}, {{localisation.codePostal}} {{localisation.ville}} </option>
+  </select>
+  <label for="salleCours">Salle de cours</label>
+  <input [(ngModel)]="formationForm.salleFormation" id="salleCours" name="salleCours" type="text">
+  <label for="dateDebut">Date début</label>
   <input type="date" [(ngModel)]="formationForm.dateDebut" id="dateDebut" name="dateDebut" placeholder="Date de debut" />
 
-  <label for="dateFin">date fin </label>
+  <label for="dateFin">Date fin</label>
   <input type="date" [(ngModel)]="formationForm.dateFin" id="dateFin" name="dateFin" placeholder="Date de fin" />
 
 

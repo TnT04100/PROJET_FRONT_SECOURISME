@@ -4,7 +4,7 @@ import {NgForOf, NgIf} from "@angular/common";
 import Stagiaire from '../../stagiaires/models/stagiaires.interface';
 import {StagiairesService} from '../../stagiaires/services/stagiaires.service';
 import {ActivatedRoute, Router} from '@angular/router';
-import {FormationService} from '../../formations/formation-list/services/formation.service';
+import {FormationService} from '../../formations/services/formation.service';
 import {FormateursService} from '../services/formateurs.service';
 import Formateurs from '../models/formateurs.interface';
 import {MenuComponent} from "../../../shared/menu/menu.component";

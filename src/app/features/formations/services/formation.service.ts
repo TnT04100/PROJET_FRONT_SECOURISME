@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import Formation from '../models/formation.interface';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable, Subscription} from 'rxjs';
-import Formateurs from '../../../formateurs/models/formateurs.interface';
+import Formateurs from '../../formateurs/models/formateurs.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +14,7 @@ export class FormationService {
   constructor(private http: HttpClient) {}
 
   private getHttpOptions() {
-    const token = localStorage.getItem('jwtToken');
+    const token = localStorage.getItem('token');
     return {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',

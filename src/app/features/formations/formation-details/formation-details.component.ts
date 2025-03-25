@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { FormationService } from '../formation-list/services/formation.service';
-import Formation from '../formation-list/models/formation.interface';
+import { FormationService } from '../services/formation.service';
+import Formation from '../models/formation.interface';
 import {DatePipe, NgIf} from '@angular/common';
 import {Subscription} from 'rxjs';
 

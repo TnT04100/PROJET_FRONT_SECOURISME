@@ -30,17 +30,13 @@ export class AuthentComponent {
       next: (response: any) => {
         console.log('Connexion réussie:', response);
         const token = response.token;
-        this.saveToken(token);
+        this.authService.saveToken(token);
         this.router.navigate(['/accueil'])
       },
       error: (error: any) => {
         console.error('Erreur de connexion:', error);
       }
     });
-  }
-
-  saveToken(token: string) {
-    localStorage.setItem('jwtToken', token);
   }
 }
 

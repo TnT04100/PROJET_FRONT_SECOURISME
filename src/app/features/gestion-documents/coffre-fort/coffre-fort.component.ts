@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Router, RouterModule} from '@angular/router';
-import {Services} from './services/services.service';
-import Fichier from './models/interface';
+import {Services} from '../services/services.service';
+import Fichier from '../models/interface';
 import {NgForOf, NgIf} from '@angular/common';
 
 @Component({

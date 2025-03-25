@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import {Router, RouterLink} from '@angular/router';
-import Formation from './models/formation.interface';
-import { FormationService } from './services/formation.service';
+import Formation from '../models/formation.interface';
+import { FormationService } from '../services/formation.service';
 import { DatePipe, NgForOf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {MenuComponent} from '../../../shared/menu/menu.component';
 import {PopUpComponent} from '../../pop-up/pop-up.component';
+import {UniteEnseignement} from '../../unite-enseignement/models/unite-enseignement.interface';
 
 @Component({
   selector: 'app-formation-list',
@@ -27,7 +28,7 @@ export class FormationListComponent {
   startDate: string = '';
   endDate: string = '';
   displayedCount: number = 0;
-  diplomeFilter: string = '';
+  diplomeFilter?: UniteEnseignement;
 
   constructor(private formationService: FormationService, private router: Router) {
     this.getFormations();
@@ -71,11 +72,10 @@ export class FormationListComponent {
 
   get filteredFormations(): Formation[] {
     return this.formations.filter(formation => {
-      const matchesSearch = formation.libelle.toLowerCase().includes(this.search.toLowerCase());
+      const matchesSearch = formation.libelleFormation.toLowerCase().includes(this.search.toLowerCase());
       const matchesStartDate = !this.startDate || new Date(formation.dateDebut).toISOString().split('T')[0] === this.startDate;
       const matchesEndDate = !this.endDate || new Date(formation.dateFin).toISOString().split('T')[0] === this.endDate;
-      const matchesDiplome = !this.diplomeFilter || formation.diplome === this.diplomeFilter;
-      return matchesSearch && matchesStartDate && matchesEndDate && matchesDiplome;
+      return matchesSearch && matchesStartDate && matchesEndDate
     });
   }
 
@@ -97,7 +97,7 @@ export class FormationListComponent {
 
   showDeleteConfirmation(formation: Formation) {
     this.formationToDelete = formation;
-    this.popUpContent = `Voulez-vous supprimer " ${formation.libelle} " ?`;
+    this.popUpContent = `Voulez-vous supprimer " ${formation.libelleFormation} " ?`;
     this.isPopUpVisible = true;
   }
 
@@ -121,8 +121,8 @@ export class FormationListComponent {
     this.formationToShow = formation;
     this.popUpContent = `
     <p><strong>ID :</strong> ${formation.id}</p><br>
-    <p><strong>Nom :</strong> ${formation.libelle}</p><br>
-    <p><strong>Type de formation :</strong> ${formation.diplome}</p><br>
+    <p><strong>Nom :</strong> ${formation.libelleFormation}</p><br>
+    <p><strong>Type de formation :</strong> ${formation.uniteEnseignementId}</p><br>
     <p><strong>Date de début :</strong> ${new Date(formation.dateDebut).toLocaleDateString()}</p><br>
     <p><strong>Date de fin :</strong> ${new Date(formation.dateFin).toLocaleDateString()}</p>
   `;

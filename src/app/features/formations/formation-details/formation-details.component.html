@@ -1,8 +1,8 @@
 <h2>Détails de la formation</h2>
 <div *ngIf="formation">
   <p>Id: {{ formation.id }}</p>
-  <p>Nom: {{ formation.libelle }}</p>
-  <p>Type de formation: {{ formation.diplome }}</p>
+  <p>Nom: {{ formation.libelleFormation }}</p>
+  <p>Type de formation: {{ formation.uniteEnseignementId }}</p>
   <p>Date début: {{ formation.dateDebut | date:'dd/MM/yyyy' }}</p>
   <p>Date fin: {{ formation.dateFin | date:'dd/MM/yyyy' }}</p>
 </div>

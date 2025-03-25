@@ -1,15 +1,15 @@
-import { Component } from '@angular/core';
-import {FormsModule} from '@angular/forms';
-import {ActivatedRoute, Router} from '@angular/router';
-import {FormationService} from '../formation-list/services/formation.service';
-import Formation from '../formation-list/models/formation.interface';
-import {Diplome} from '../formation-list/models/diplome.type';
-import {NgForOf, NgIf} from '@angular/common';
-import {MenuComponent} from "../../../shared/menu/menu.component";
-import {PopUpComponent} from '../../pop-up/pop-up.component';
-import {FormateursService} from '../../formateurs/services/formateurs.service';
-import Formateurs from '../../formateurs/models/formateurs.interface';
-import Stagiaire from '../../stagiaires/models/stagiaires.interface';
+import { Component, OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { FormationService } from '../services/formation.service';
+import Formation from '../models/formation.interface';
+import { NgForOf, NgIf } from '@angular/common';
+import { MenuComponent } from "../../../shared/menu/menu.component";
+import { PopUpComponent } from '../../pop-up/pop-up.component';
+import { UniteEnseignementService } from '../../unite-enseignement/services/unite-enseignement.service';
+import { LocalisationService } from '../../localisation/services/localisation.service';
+import { UniteEnseignement } from '../../unite-enseignement/models/unite-enseignement.interface';
+import { Localisation } from '../../localisation/models/localisation.interface';
 
 @Component({
   selector: 'app-formation-form',
@@ -23,27 +23,23 @@ import Stagiaire from '../../stagiaires/models/stagiaires.interface';
   templateUrl: './formation-form.component.html',
   styleUrl: './formation-form.component.css'
 })
-export class FormationFormComponent {
+export class FormationFormComponent implements OnInit {
 
-  diplome: String[] = [
-    'PSC1' ,
-    'PS' ,
-    'SC1' ,
-    'SC2' ,
-    'SC3'
-  ]
-
-
-  formationForm!: Formation
-
+  formationForm!: Formation;
+  uniteEnseignements: UniteEnseignement[] = [];
+  localisations: Localisation[] = [];
 
   constructor(
     private formationService: FormationService,
     private router: Router,
-    private route: ActivatedRoute
-  ) {
+    private route: ActivatedRoute,
+    private uniteEnseignementService: UniteEnseignementService,
+    private localisationService: LocalisationService,
+  ) {}
+
+  ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
-      const id = params.get('id')
+      const id = params.get('id');
       if (id) {
         this.formationService.getById(parseInt(id)).subscribe(
           {
@@ -55,53 +51,76 @@ export class FormationFormComponent {
               console.error('Impossible de récupérer le formateur', err);
             }
           }
-        )
+        );
       } else {
-        this.formationForm = this.getBlankFormation()
+        this.formationForm = this.getBlankFormation();
       }
-    })
+    });
+
+    this.uniteEnseignementService.getAll().subscribe(
+      {
+        next: (uniteEnseignements) => {
+          this.uniteEnseignements = uniteEnseignements;
+        },
+        error: (err) => {
+          console.error('Impossible de récupérer les unités d\'enseignement', err);
+        }
+      }
+    );
+
+    this.localisationService.getAll().subscribe(
+      {
+        next: (localisations) => {
+          this.localisations = localisations;
+        },
+        error: (err) => {
+          console.error('Impossible de récupérer les localisations', err);
+        }
+      }
+    );
   }
 
-
-  valider(): void {
-    this.formationService.save(this.formationForm)
-    this.router.navigate(['/formation'])
+  async valider() {
+    this.formationForm.uniteEnseignementId = Number(this.formationForm.uniteEnseignementId);
+    this.formationForm.localisationId = Number(this.formationForm.localisationId);
+    this.formationService.save(this.formationForm);
+    await this.attendre(500);
+    this.router.navigate(['/formation']);
   }
 
-  private getBlankFormation() {
-    let psc: Diplome = 'PSC1'
+  attendre(ms:number): Promise<void>{
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
+  private getBlankFormation(): Formation {
     return {
-      libelle: '',
+      libelleFormation: '',
       dateDebut: new Date(),
       dateFin: new Date(),
-      diplome: psc,
+      uniteEnseignementId: 0,
+      localisationId: 0,
       salleFormation: '',
       codeCours: '',
-      formateur: [],
-      stagiaires: [],
+      formateursIds: [],
+      stagiairesIds: [],
     };
   }
 
-  annuler() {
-    this.router.navigate(['/formation'])
+  annuler(): void {
+    this.router.navigate(['/formation']);
   }
 
-
-// gestion Pop-up
+  // gestion Pop-up
   isValidationPopUpVisible = false;
   popUpContent = 'Voulez vous valider cette formation ?';
 
-  showValidationPopUp() {
+  showValidationPopUp(): void {
     this.isValidationPopUpVisible = true;
-    this.popUpContent = `Voulez-vous valider " ${this.formationForm.libelle} " ?`;
+    this.popUpContent = `Voulez-vous valider " ${this.formationForm.libelleFormation} " ?`;
   }
 
-  confirmValidation() {
+  confirmValidation(): void {
     this.valider(); // Sauvegarde la formation
     this.isValidationPopUpVisible = false;
   }
-
-
 }
-
-
