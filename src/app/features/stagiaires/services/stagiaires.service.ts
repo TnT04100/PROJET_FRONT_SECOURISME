@@ -15,7 +15,7 @@ export class StagiairesService {
   constructor(private http: HttpClient) {}
 
   private getHttpOptions() {
-    const token = localStorage.getItem('jwtToken');
+    const token = localStorage.getItem('token');
     return {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
