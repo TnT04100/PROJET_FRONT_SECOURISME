@@ -38,8 +38,8 @@
     <td>
       <button (click)="showDeleteConfirmation(formation)">Supprimer</button>
       <button [routerLink]="'/formation/form/' + formation.id">Modifier</button>
-      <button [routerLink]="['/stagiaire']">Ajouter un participant</button>
-      <button [routerLink]="['/formateur']">Ajouter un formateur</button>
+      <button [routerLink]="['/stagiaire/add']">Ajouter un participant</button>
+      <button [routerLink]="['/formateur/add']">Ajouter un formateur</button>
     </td>
   </tr>
   </tbody>
